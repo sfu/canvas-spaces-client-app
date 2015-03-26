@@ -1,0 +1,25 @@
+{
+  "name": "canvas_spaces_client_app",
+  "version": "1.0.0",
+  "description": "Canvas Spaces Manager App",
+  "main": "webpack.config.js",
+  "scripts": {
+    "start": "webpack-dev-server --inline --no-info --content-base www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "canvas",
+    "lms",
+    "spaces",
+    "sfu"
+  ],
+  "author": "Graham Ballantyne <grahamb@sfu.ca>",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^1.7.3",
+    "webpack-dev-server": "^1.7.0"
+  },
+  "dependencies": {
+    "canvas_react_i18n": "^1.2.1"
+  }
+}
