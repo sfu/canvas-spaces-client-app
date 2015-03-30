@@ -3,7 +3,4 @@ tmp
 *.log
 dist
 TODO*
-www/config
-www/src
-www/vendor
 vendor/canvas
