@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Canvas Spaces Manager App",
   "main": "webpack.config.js",
+  "repository": "https://github.com/sfu/canvas_spaces_client_app",
   "scripts": {
     "start": "webpack-dev-server --inline --no-info --content-base www",
     "test": "echo \"Error: no test specified\" && exit 1"
