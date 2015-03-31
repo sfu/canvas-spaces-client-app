@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+
+/*
+  canvas_setup
+  Assumes that this plugin has been installed into ${CANVAS_ROOT}/client_apps/${PKG_NAME}
+  Run after cloing repo into ${CANVAS_ROOT}/client_apps/${PKG_NAME}
+  Sets up hooks into canvas-lms:
+
+  - creates the vendor/canvas symlink
+  - creates a sass file in ${CANVAS_ROOT}/apps/stylesheets/canvas_app/${PKG_NAME}
+*/
+var fs = require('fs-extra');
+var path = require('path');
+var pkg = require('../package.json');
+
+// we should die if we're not actually installed in the client_apps folder
+if (path.basename(path.dirname(process.cwd())) !== 'client_apps') {
+  console.log('FATAL: canvas_setup should be run from within the canvas client_apps directory');
+  process.exit(1);
+}
+
+const CLIENT_APPS_STYLESHEETS_DIR = 'vendor/canvas/app/stylesheets/client_apps';
+const CLIENT_APP_MAIN_STYLESHEET_SRC = 'src/scss/CANVAS_CLIENT_APPS_MAIN.scss'
+const CLIENT_APP_MAIN_STYLESHEET_DEST = CLIENT_APPS_STYLESHEETS_DIR + '/' + pkg.name + '.scss'
+
+// remove old vendor/canvas symlinks if they exist and create new one
+console.log('setting up vendor/canvas symlink');
+fs.removeSync('vendor/canvas');
+fs.symlinkSync(path.resolve(process.cwd(), '../..'), 'vendor/canvas');
+
+// copy stylesheet into ${CANVAS_ROOT}/apps/stylesheets/canvas_app/${PKG_NAME}
+if (fs.existsSync(CLIENT_APP_MAIN_STYLESHEET_SRC)) {
+  console.log('copying %s to %s', CLIENT_APP_MAIN_STYLESHEET_SRC, CLIENT_APP_MAIN_STYLESHEET_DEST);
+  fs.ensureDirSync(CLIENT_APPS_STYLESHEETS_DIR);
+  fs.copySync(CLIENT_APP_MAIN_STYLESHEET_SRC, CLIENT_APP_MAIN_STYLESHEET_DEST);
+}
