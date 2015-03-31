@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+
+var fs = require('fs-extra');
+var path = require('path');
+var compileJSX = require('./build_scripts/compile_jsx');
+
+// ============================================================================
+// STAGE 1: Setting up the file system & staging files for processing
+// ----------------------------------------------------------------------------
+fs.removeSync('tmp');
+fs.removeSync('dist');
+
+fs.ensureDirSync('tmp/js');
+fs.ensureDirSync('tmp/dist');
+fs.ensureDirSync('dist');
+
+fs.copySync('src/js', 'tmp/compiled/js');
+
+compileJSX('tmp/compiled/js', 'dist');
