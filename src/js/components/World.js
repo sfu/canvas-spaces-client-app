@@ -1,16 +1,14 @@
-define(function(require) {
-  const React = require('react');
-  const World = React.createClass({
+const React = require('canvas/react');
+const World = React.createClass({
 
-    divstyle: {
-      padding: '50px',
-    },
+  divstyle: {
+    padding: '50px',
+  },
 
-    render() {
-      return (
-        <span>World!</span>
-      );
-    }
-  });
-  return World;
+  render() {
+    return (
+      <span>World!</span>
+    );
+  }
 });
+module.exports = World;
