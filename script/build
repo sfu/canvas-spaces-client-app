@@ -1,19 +1,8 @@
-#!/usr/bin/env node
+#!/bin/bash
 
-var fs = require('fs-extra');
-var path = require('path');
-var compileJSX = require('./build_scripts/compile_jsx');
+rm -rf dist && ./node_modules/.bin/webpack -p
 
-// ============================================================================
-// STAGE 1: Setting up the file system & staging files for processing
-// ----------------------------------------------------------------------------
-fs.removeSync('tmp');
-fs.removeSync('dist');
-
-fs.ensureDirSync('tmp/js');
-fs.ensureDirSync('tmp/dist');
-fs.ensureDirSync('dist');
-
-fs.copySync('src/js', 'tmp/compiled/js');
-
-compileJSX('tmp/compiled/js', 'dist');
+# this is so that
+# ./gems/canvas_i18nliner/bin/i18nliner generate_js
+# doesn't shit the bed
+mkdir -p dist/canvas_spaces
