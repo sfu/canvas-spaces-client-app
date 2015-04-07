@@ -9,28 +9,43 @@
   - creates the vendor/canvas symlink
   - creates a sass file in ${CANVAS_ROOT}/apps/stylesheets/canvas_app/${PKG_NAME}
 */
-var fs = require('fs-extra');
-var path = require('path');
-var pkg = require('../package.json');
+
+const fs = require('fs-extra');
+const path = require('path');
+const glob = require('glob');
+
+const pkg = require('../package.json');
+const APP_NAME = pkg.name;
 
 // we should die if we're not actually installed in the client_apps folder
 if (path.basename(path.dirname(process.cwd())) !== 'client_apps') {
-  console.log('FATAL: canvas_setup should be run from within the canvas client_apps directory');
+  console.log('FATAL: canvas_setup should be run from within the canvas client_apps/canvas_spaces directory');
   process.exit(1);
 }
 
-const CLIENT_APPS_STYLESHEETS_DIR = 'vendor/canvas/app/stylesheets/client_apps';
-const CLIENT_APP_MAIN_STYLESHEET_SRC = 'src/scss/CANVAS_CLIENT_APPS_MAIN.scss'
-const CLIENT_APP_MAIN_STYLESHEET_DEST = CLIENT_APPS_STYLESHEETS_DIR + '/' + pkg.name + '.scss'
 
-// remove old vendor/canvas symlinks if they exist and create new one
-console.log('setting up vendor/canvas symlink');
+console.log('\nSetting up canvas hooks for client app %s', APP_NAME);
+
+// // remove old vendor/canvas symlinks if they exist and create new one
+console.log('  ★ Creating vendor/canvas symlink');
 fs.removeSync('vendor/canvas');
 fs.symlinkSync(path.resolve(process.cwd(), '../..'), 'vendor/canvas');
 
-// copy stylesheet into ${CANVAS_ROOT}/apps/stylesheets/canvas_app/${PKG_NAME}
-if (fs.existsSync(CLIENT_APP_MAIN_STYLESHEET_SRC)) {
-  console.log('copying %s to %s', CLIENT_APP_MAIN_STYLESHEET_SRC, CLIENT_APP_MAIN_STYLESHEET_DEST);
-  fs.ensureDirSync(CLIENT_APPS_STYLESHEETS_DIR);
-  fs.copySync(CLIENT_APP_MAIN_STYLESHEET_SRC, CLIENT_APP_MAIN_STYLESHEET_DEST);
-}
+
+// copy files from CANVAS_INCLUDES_DIR into their canvas counterparts
+const CANVAS_INCLUDES_DIR = path.resolve('canvas');
+const FILES_TO_COPY = glob.sync('**/*', {
+  cwd: CANVAS_INCLUDES_DIR,
+  nodir: true
+});
+
+console.log('  ★ Copying files from ./canvas tree into vendor/canvas');
+FILES_TO_COPY.forEach(function(file) {
+  const SRC = path.resolve(CANVAS_INCLUDES_DIR, file);
+  const DEST = path.resolve('vendor/canvas', file);
+  fs.ensureDirSync(path.dirname(DEST));
+  fs.copySync(SRC, DEST);
+  console.log('      ./canvas/%s → ./vendor/canvas/%s', file, file);
+});
+
+console.log('\nDone. Run `bundle exec rake canvas:compile_assets` from the canvas root to complete the installation.\n');
