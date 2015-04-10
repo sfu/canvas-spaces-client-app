@@ -1,4 +1,4 @@
-const React = require('canvas/react');
+const React = require('react');
 const World = React.createClass({
 
   divstyle: {
