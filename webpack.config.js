@@ -55,10 +55,8 @@ module.exports = {
   devServer: {
     hot: true,
     historyApiFallback: true,
-    contentBase: "./www",
     proxy: {
       '/api/v1/*': 'http://canvas.dev'
     }
   }
-
 }
