@@ -1,23 +1,59 @@
-var path = require('path');
+const webpack = require('webpack');
+const path = require('path');
 
+var pragmas = new webpack.DefinePlugin({
+  __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true'))
+});
 
 module.exports = {
-  entry: './src/js/main.js',
+  devtool: 'eval',
+
+  entry: [
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
+    './src/js/main.js',
+  ],
+
   output: {
     filename: 'canvas_spaces.js',
-    path: './dist'
+    path: './dist',
+    publicPath: 'http://localhost:8080/dist/'
   },
+
   module: {
+    noParse: /react-with-addons\.js$/,
     loaders: [
-      { test: /\.js$/, loader: 'babel-loader' },
+      {
+        test: /\.js$/,
+        loaders: ['react-hot', 'babel-loader'],
+        include: path.join(__dirname, 'src')
+      }
     ]
   },
+
+  plugins: [
+    // pragmas,
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ],
+
   resolve: {
+    extensions: ['', '.js', '.jsx'],
     root: [
       __dirname + '/src/js',
     ],
     alias: {
-      'canvas/react': __dirname + '/vendor/canvas/public/javascripts/bower/react/react-with-addons'
+      'react': __dirname + '/vendor/canvas/public/javascripts/bower/react/react-with-addons'
+    }
+  },
+
+  devServer: {
+    hot: true,
+    historyApiFallback: true,
+    contentBase: "./www",
+    proxy: {
+      '/api/v1/*': 'http://canvas.dev'
     }
   }
+
 }
