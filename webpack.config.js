@@ -36,7 +36,7 @@ module.exports = {
   },
 
   plugins: [
-    // pragmas,
+    pragmas,
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ],
