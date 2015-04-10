@@ -11,7 +11,7 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
-    './src/js/main.js',
+    './src/js/index.js',
   ],
 
   output: {
@@ -54,7 +54,7 @@ module.exports = {
 
   devServer: {
     hot: true,
-    historyApiFallback: true,
+    // historyApiFallback: true,
     proxy: {
       '/api/v1/*': 'http://canvas.dev'
     }
