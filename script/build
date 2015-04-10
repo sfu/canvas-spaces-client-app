@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -rf dist && ./node_modules/.bin/webpack -p
+./node_modules/.bin/webpack --config webpack.production.js --optimize-minimize
 
 # this is so that
 # ./gems/canvas_i18nliner/bin/i18nliner generate_js
