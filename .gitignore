@@ -4,3 +4,4 @@ tmp
 dist
 TODO*
 vendor/canvas
+config/*local*

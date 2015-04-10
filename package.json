@@ -34,6 +34,7 @@
     "webpack-dev-server": "^1.8.0"
   },
   "dependencies": {
-    "canvas_react_i18n": "^1.2.1"
+    "canvas_react_i18n": "^1.2.1",
+    "config": "^1.12.0"
   }
 }
