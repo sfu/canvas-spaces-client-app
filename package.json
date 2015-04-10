@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "repository": "https://github.com/sfu/canvas_spaces_client_app",
   "scripts": {
-    "start": "webpack-dev-server --inline --no-info --content-base www",
+    "start": "webpack-dev-server",
     "setup": "script/canvas_setup",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,8 +24,10 @@
     "glob": "^5.0.3",
     "gulp": "^3.8.11",
     "gulp-webserver": "^0.9.0",
+    "react-hot-loader": "^1.2.4",
     "react-tools": "^0.13.1",
-    "webpack": "^1.7.3"
+    "webpack": "^1.7.3",
+    "webpack-dev-server": "^1.8.0"
   },
   "dependencies": {
     "canvas_react_i18n": "^1.2.1"
