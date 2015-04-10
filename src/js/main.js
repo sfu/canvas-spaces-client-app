@@ -1,11 +1,7 @@
-console.log('this is main.js');
+import React from 'react';
 
 if (__DEV__) {
   require('../scss/main.scss');
+  window.React = window.React || React;
+  console.log('React: ', React.version);
 }
-
-var React = require('react');
-console.log('main.js React', React.version);
-var Hello = React.createFactory(require('./components/Hello'));
-window.React = React;
-React.render(Hello(), document.getElementById('Hello'));
