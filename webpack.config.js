@@ -47,7 +47,8 @@ module.exports = {
       __dirname + '/src/js',
     ],
     alias: {
-      'react': __dirname + '/vendor/canvas/public/javascripts/bower/react/react-with-addons'
+      'react': 'react/addons',
+      'react/addons/lib': 'react/../lib'
     }
   },
 
