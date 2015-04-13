@@ -44,6 +44,7 @@ module.exports = {
     extensions: ['', '.js', '.jsx'],
     root: [
       __dirname + '/src/js',
+      __dirname + '/vendor/canvas/public/javascripts'
     ],
     alias: {
       'react': 'react/addons',
