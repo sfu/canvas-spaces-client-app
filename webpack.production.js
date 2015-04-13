@@ -3,7 +3,7 @@ var path = require('path');
 var Clean = require("clean-webpack-plugin");
 
 var pragmas = new webpack.DefinePlugin({
-  __DEV__: JSON.stringify('false')),
+  __DEV__: JSON.stringify(JSON.parse('false'))
 });
 
 module.exports = {
