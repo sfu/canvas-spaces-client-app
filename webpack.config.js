@@ -21,7 +21,6 @@ module.exports = {
   },
 
   module: {
-    noParse: /react-with-addons\.js$/,
     loaders: [
       {
         test: /\.js$/,
@@ -54,7 +53,6 @@ module.exports = {
 
   devServer: {
     hot: true,
-    // historyApiFallback: true,
     proxy: {
       '/api/v1/*': 'http://canvas.dev'
     }
