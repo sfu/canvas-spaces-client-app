@@ -57,5 +57,8 @@ module.exports = {
     proxy: {
       '/api/v1/*': 'http://canvas.dev'
     }
-  }
+  },
+
+  // this is for the old canvas-supplied jQuery 1.7.2
+  amd: { jQuery: true }
 }
