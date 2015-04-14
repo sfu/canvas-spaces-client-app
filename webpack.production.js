@@ -38,4 +38,7 @@ module.exports = {
       'react': __dirname + '/vendor/canvas/public/javascripts/bower/react/react-with-addons',
     }
   },
+
+  amd: { jQuery: true }
+
 }
