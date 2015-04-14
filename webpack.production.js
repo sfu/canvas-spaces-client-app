@@ -32,6 +32,7 @@ module.exports = {
     extensions: ['', '.js', '.jsx'],
     root: [
       __dirname + '/src/js',
+      __dirname + '/vendor/canvas/public/javascripts'
     ],
     alias: {
       'react': __dirname + '/vendor/canvas/public/javascripts/bower/react/react-with-addons',
