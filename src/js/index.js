@@ -1,8 +1,8 @@
 import React from 'react';
 import Router from 'react-router';
-import CreateSpace from './apps/CreateSpace';
-import MySpaces from './apps/MySpaces';
-import SpaceDirectory from './apps/SpaceDirectory';
+import CreateSpace from 'apps/CreateSpace';
+import MySpaces from 'apps/MySpaces';
+import SpaceDirectory from 'apps/SpaceDirectory';
 
 const { Route, NotFoundRoute, DefaultRoute, Link, RouteHandler } = Router;
 
