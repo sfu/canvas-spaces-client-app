@@ -3,7 +3,7 @@ var path = require('path');
 var Clean = require("clean-webpack-plugin");
 
 var pragmas = new webpack.DefinePlugin({
-  __DEV__: JSON.stringify(JSON.parse('false'))
+  __DEV__: 'false'
 });
 
 module.exports = {
@@ -30,15 +30,6 @@ module.exports = {
 
   resolve: {
     extensions: ['', '.js', '.jsx'],
-    root: [
-      __dirname + '/src/js',
-      __dirname + '/vendor/canvas/public/javascripts'
-    ],
-    alias: {
-      'react': __dirname + '/vendor/canvas/public/javascripts/bower/react/react-with-addons',
-    }
-  },
-
-  amd: { jQuery: true }
-
+    root: __dirname + '/src/js',
+  }
 }
