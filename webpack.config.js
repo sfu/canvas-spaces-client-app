@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 var pragmas = new webpack.DefinePlugin({
-  __DEV__: JSON.stringify(JSON.parse('true'))
+  __DEV__: 'true'
 });
 
 module.exports = {
