@@ -42,6 +42,7 @@ module.exports = {
 
   resolve: {
     extensions: ['', '.js', '.jsx'],
+    root: __dirname + '/src/js'
   },
 
   devServer: {
