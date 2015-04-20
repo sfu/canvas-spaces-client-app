@@ -1,8 +1,8 @@
 import ObjectAssign from 'object-assign';
 import React from 'react';
 
-import GroupNameField from './GroupNameField';
-import GroupDescriptionField from './GroupDescriptionField';
+import SpaceNameField from './SpaceNameField';
+import SpaceDescriptionField from './SpaceDescriptionField';
 import SpaceJoinLevelField from './SpaceJoinLevelField';
 
 const CreateSpace = React.createClass({
@@ -21,9 +21,6 @@ const CreateSpace = React.createClass({
       errors: []
     };
   },
-
-  setError
-
 
   updateState(data) {
     const newSpaceState = ObjectAssign({}, this.state.space, data);
@@ -51,12 +48,12 @@ const CreateSpace = React.createClass({
         <h2>Create New Space</h2>
         <div className="ic-Form-group ic-Form-group--horizontal">
 
-          <GroupNameField
+          <SpaceNameField
             value={this.state.space.name}
             {...commonProps}
           />
 
-          <GroupDescriptionField
+          <SpaceDescriptionField
             name="space_description"
             label="Description"
             placeholder="A longer description of the purpose of your group"
