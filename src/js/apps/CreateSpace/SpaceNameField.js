@@ -1,7 +1,7 @@
 import React from 'react';
 import ICInputField from 'FormComponents/ICInputField';
 
-const GroupNameField = React.createClass({
+const SpaceNameField = React.createClass({
 
   handleChange(event) {
     this.props.update({name: this.refs.space_name.getValue()});
@@ -22,4 +22,4 @@ const GroupNameField = React.createClass({
 
 });
 
-export default GroupNameField;
+export default SpaceNameField;
