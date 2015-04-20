@@ -6,6 +6,10 @@ import SpaceDirectory from 'apps/SpaceDirectory';
 
 const { Route, NotFoundRoute, DefaultRoute, Link, RouteHandler } = Router;
 
+if (__DEV__) {
+  require('../scss/main.scss');
+}
+
 const App = React.createClass({
   render() {
     return (
