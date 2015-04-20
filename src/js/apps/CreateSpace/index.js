@@ -4,6 +4,7 @@ import React from 'react';
 import SpaceNameField from './SpaceNameField';
 import SpaceDescriptionField from './SpaceDescriptionField';
 import SpaceJoinLevelField from './SpaceJoinLevelField';
+import SpaceInitialUsersField from './SpaceInitialUsersField';
 
 const CreateSpace = React.createClass({
   contextTypes: {
@@ -62,6 +63,8 @@ const CreateSpace = React.createClass({
             checked={this.state.space.join_level}
             {...commonProps}
           />
+
+          <SpaceInitialUsersField />
 
           <pre>
             {JSON.stringify(this.state, null, 2)}
