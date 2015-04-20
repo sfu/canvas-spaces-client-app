@@ -1,7 +1,9 @@
+import ObjectAssign from 'object-assign';
 import React from 'react';
-import Router from 'react-router';
+
 import GroupNameField from './GroupNameField';
-const { Link } = Router;
+import GroupDescriptionField from './GroupDescriptionField';
+import SpaceJoinLevelField from './SpaceJoinLevelField';
 
 const CreateSpace = React.createClass({
   contextTypes: {
@@ -9,77 +11,69 @@ const CreateSpace = React.createClass({
   },
 
   getInitialState() {
-    console.log('gis');
     return {
-      group: {
-        group_name: null,
-        group_description: null,
-        join_level: 'public',
+      space: {
+        name: null,
+        description: null,
+        join_level: 'invitation',
         initial_members: []
       },
-      step: this.context.router.getCurrentParams().step || null
+      errors: []
     };
   },
 
-  // statics: {
-  //   willTransitionTo: (transition, params) => { console.log('willTransitionTo', transition, params); },
-  //   willTransitionFrom: (transition, component) => { console.log('willTransitionFrom', transition, component); },
-  // },
+  setError
 
-  renderStep() {
-    var common_props = {
-      data: this.state.group,
-      next: this.nextStep,
-      prev: this.previousStep,
-      save: this.saveValues
-    };
 
-    switch(parseInt(this.context.router.getCurrentParams().step)) {
-      case 1:
-        delete common_props.prev;
-        return <GroupNameField {...common_props} />
-        // return <GroupNameField {...common_props} />
-        break;
-      case 2:
-      return <p>Step 2</p>
-        // return <GroupDescriptionField {...common_props} />
-        break;
-      case 3:
-      return <p>Step 3</p>
-        // return <GroupJoinLevelField {...common_props} />
-        break;
-      case 4:
-        // return <GroupMembershipFields {...common_props} />
-        break;
-      case 5:
-        // return <Confirmation  {...common_props} />
-        break;
-      case 6:
-        return <div><h3>Success!</h3><p>Your space {this.state.group.group_name} will be created.</p></div>
-        break;
-      default:
-        delete common_props.prev;
-        return this.defaultContent();
-        break;
-    }
+  updateState(data) {
+    const newSpaceState = ObjectAssign({}, this.state.space, data);
+    this.setState({
+      space: newSpaceState,
+      errors: this.state.errors
+    });
   },
 
-  defaultContent() {
-    console.log('defaultContent');
-    return (
-      <div>
-      <p>This lets you create a new Canvas Space. Pretty sweet, eh?</p>
-      <Link className="btn" to="create_space_form" params={{step: 1}}>Get Started</Link><br/>
-      </div>
-    )
+  radioButtonChange(event) {
+    const val = this.refs.join_level_radio_group.getChecked().value;
+    var newState = ObjectAssign({}, this.state, {space: {join_level: val}});
+    console.log('newstate', newState);
+    this.setState({
+      space: { join_level: this.refs.join_level_radio_group.getChecked().value }
+    });
   },
 
   render() {
+    const commonProps = {
+      update: this.updateState
+    };
     return (
       <div>
         <h2>Create New Space</h2>
-        <h3>Step {this.state.step}</h3>
-        {this.renderStep(this.state.step)}
+        <div className="ic-Form-group ic-Form-group--horizontal">
+
+          <GroupNameField
+            value={this.state.space.name}
+            {...commonProps}
+          />
+
+          <GroupDescriptionField
+            name="space_description"
+            label="Description"
+            placeholder="A longer description of the purpose of your group"
+            value={this.state.space.description}
+            {...commonProps}
+          />
+
+          <SpaceJoinLevelField
+            checked={this.state.space.join_level}
+            {...commonProps}
+          />
+
+          <pre>
+            {JSON.stringify(this.state, null, 2)}
+          </pre>
+
+        </div>
       </div>
     );
   }
