@@ -54,9 +54,6 @@ const CreateSpace = React.createClass({
           />
 
           <SpaceDescriptionField
-            name="space_description"
-            label="Description"
-            placeholder="A longer description of the purpose of your group"
             value={this.state.space.description}
             {...commonProps}
           />
