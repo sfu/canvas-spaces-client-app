@@ -37,9 +37,7 @@ const Dashboard = React.createClass({
 
 const routes = (
   <Route name="app" path="/" handler={App}>
-    <Route name="create_space" path="/create_space" handler={CreateSpace}>
-      <Route name="create_space_form" path=":step" handler={CreateSpace} />
-    </Route>
+    <Route name="create_space" handler={CreateSpace} />
     <Route name="my_spaces" handler={MySpaces} />
     <Route name="space_directory" handler={SpaceDirectory} />
     <DefaultRoute handler={Dashboard} />
