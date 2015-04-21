@@ -1,0 +1,29 @@
+// CANVAS COLOUR VARIABLES
+// PULLED FROM /app/stylesheets/base/_variables
+
+$use_high_contrast: true;
+
+$canvas-primary:                  #0099e0 !default; // light blue
+@if $use_high_contrast { $canvas-primary: #0073ac; }
+
+$canvas-secondary:                #5b6c79 !default; // dark blue
+@if $use_high_contrast { $canvas-secondary: #343c44; }
+
+$canvas-success:                  #00ad18; // green
+@if $use_high_contrast { $canvas-success: #008a14; }
+
+$canvas-neutral:                  hsl(0,0,90%);
+
+$canvas-action:                   #ba3fa5; // magenta
+@if $use_high_contrast { $canvas-action: #a23891; }
+
+$canvas-danger:                   #ad393a; // red
+@if $use_high_contrast { $canvas-danger: #a03536; }
+
+$canvas-alert:                    #c48506; // gold
+@if $use_high_contrast { $canvas-alert: #9e6b05; }
+
+$canvas-light:                    #fff; // white
+
+$canvas-dark:                     #333;
+
