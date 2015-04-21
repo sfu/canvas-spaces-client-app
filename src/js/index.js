@@ -12,9 +12,10 @@ if (__DEV__) {
 
 const App = React.createClass({
   render() {
+
     return (
       <div>
-        <h1>Canvas Spaces</h1>
+        <h1 style={{ marginTop: 0}}>Canvas Spaces</h1>
         <ul>
           <li><Link to="app">Dashboard</Link></li>
           <li><Link to="create_space">Create New Space</Link></li>
