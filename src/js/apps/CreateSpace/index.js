@@ -49,26 +49,44 @@ const CreateSpace = React.createClass({
         <h2>Create New Space</h2>
         <div className="ic-Form-group ic-Form-group--horizontal">
 
-          <SpaceNameField
-            value={this.state.space.name}
-            {...commonProps}
-          />
+          <fieldset>
+            <legend>Name and Description</legend>
+            <SpaceNameField
+              value={this.state.space.name}
+              {...commonProps}
+            />
 
-          <SpaceDescriptionField
-            value={this.state.space.description}
-            {...commonProps}
-          />
+            <SpaceDescriptionField
+              value={this.state.space.description}
+              {...commonProps}
+            />
+          </fieldset>
 
-          <SpaceJoinLevelField
-            checked={this.state.space.join_level}
-            {...commonProps}
-          />
+          <fieldset>
+            <legend>Privacy Options</legend>
 
-          <SpaceInitialUsersField />
+            <SpaceJoinLevelField
+              checked={this.state.space.join_level}
+              {...commonProps}
+            />
+          </fieldset>
 
-          <pre>
-            {JSON.stringify(this.state, null, 2)}
-          </pre>
+          <fieldset>
+            <legend>Space Membership</legend>
+            <SpaceInitialUsersField />
+          </fieldset>
+
+          <fieldset>
+            <legend>Debug</legend>
+            <pre>
+              {JSON.stringify(this.state, null, 2)}
+            </pre>
+          </fieldset>
+
+          <div className="ic-Form-actions">
+            <button className="Button" type="button">Cancel</button>
+            <button className="Button Button--primary" type="submit">Submit</button>
+          </div>
 
         </div>
       </div>
