@@ -1,6 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
 
+const hostname = process.env.hostname || 'localhost';
+const port = process.env.port || '8080';
+
 var pragmas = new webpack.DefinePlugin({
   __DEV__: 'true'
 });
@@ -9,7 +12,7 @@ module.exports = {
   devtool: 'eval',
 
   entry: [
-    'webpack-dev-server/client?http://localhost:8080',
+    'webpack-dev-server/client?http://' + hostname + ':' + port,
     'webpack/hot/only-dev-server',
     './src/js/index.js',
   ],
@@ -17,7 +20,7 @@ module.exports = {
   output: {
     filename: 'canvas_spaces.js',
     path: './dist',
-    publicPath: 'http://localhost:8080/dist/'
+    publicPath: 'http://' + hostname + ':' + port + '/dist/'
   },
 
   module: {
@@ -50,6 +53,8 @@ module.exports = {
 
   devServer: {
     hot: true,
+    host: hostname,
+    port: port,
     historyApiFallback: true,
     proxy: {
       '/api/v1/*': 'http://canvas.dev'
