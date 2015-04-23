@@ -1,5 +1,7 @@
 import ObjectAssign from 'object-assign';
-import React from 'react/addons';
+
+import React from 'react';
+import DeepLinkedStateMixin from 'mixins/DeepLinkedStateMixin';
 
 import SpaceNameField from './SpaceNameField';
 import SpaceDescriptionField from './SpaceDescriptionField';
@@ -7,6 +9,7 @@ import SpaceJoinLevelField from './SpaceJoinLevelField';
 import SpaceInitialUsersField from './SpaceInitialUsersField';
 
 const CreateSpace = React.createClass({
+  mixins: [DeepLinkedStateMixin],
 
   getInitialState() {
     return {
