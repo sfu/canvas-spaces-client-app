@@ -57,7 +57,8 @@ module.exports = {
     port: port,
     historyApiFallback: true,
     proxy: {
-      '/api/v1/*': 'http://canvas.dev'
+      '/api/v1/*': 'http://canvas.dev',
+      '/font/*': 'http://canvas.dev',
     }
   }
 }
