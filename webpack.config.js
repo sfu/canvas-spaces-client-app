@@ -5,7 +5,8 @@ const hostname = config.get('dev_server_hostname');
 const port = config.get('dev_server_port');
 
 var pragmas = new webpack.DefinePlugin({
-  __DEV__: 'true'
+  __DEV__: 'true',
+  __CANVAS_API_TOKEN__: JSON.stringify(config.get('api_token'))
 });
 
 module.exports = {
