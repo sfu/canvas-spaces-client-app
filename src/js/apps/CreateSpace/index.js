@@ -7,9 +7,6 @@ import SpaceJoinLevelField from './SpaceJoinLevelField';
 import SpaceInitialUsersField from './SpaceInitialUsersField';
 
 const CreateSpace = React.createClass({
-  contextTypes: {
-    router: React.PropTypes.func
-  },
 
   getInitialState() {
     return {
