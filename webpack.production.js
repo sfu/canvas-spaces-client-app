@@ -25,7 +25,11 @@ module.exports = {
 
   plugins: [
     pragmas,
-    new Clean('dist')
+    new Clean('dist'),
+    new webpack.ProvidePlugin({
+      'es6-promise': 'es6-promise',
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+    })
   ],
 
   resolve: {
