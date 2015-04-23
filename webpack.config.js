@@ -45,10 +45,7 @@ module.exports = {
 
   resolve: {
     extensions: ['', '.js', '.jsx'],
-    root: __dirname + '/src/js',
-    alias: {
-      'FormComponents': __dirname + '/src/js/FormComponents'
-    }
+    root: __dirname + '/src/js'
   },
 
   devServer: {
