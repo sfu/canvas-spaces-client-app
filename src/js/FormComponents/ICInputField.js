@@ -51,6 +51,7 @@ const ICInputField = React.createClass({
           id={this.props.name}
           className={inputClasses}
           placeholder={this.props.placeholder}
+          value={this.props.value}
           onChange={this.props.onChange}
         />
         {this.error()}
