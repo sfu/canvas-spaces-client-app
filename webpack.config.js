@@ -1,8 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
-
-const hostname = process.env.hostname || 'localhost';
-const port = process.env.port || '8080';
+const config = require('config');
+const hostname = config.get('dev_server_hostname');
+const port = config.get('dev_server_port');
 
 var pragmas = new webpack.DefinePlugin({
   __DEV__: 'true'
@@ -58,8 +58,8 @@ module.exports = {
     port: port,
     historyApiFallback: true,
     proxy: {
-      '/api/v1/*': 'http://canvas.dev',
-      '/font/*': 'http://canvas.dev',
+      '/api/v1/*': config.get('api_proxy'),
+      '/font/*': config.get('api_proxy'),
     }
   }
 }

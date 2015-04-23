@@ -1,3 +1,5 @@
 {
-  "api_proxy": "http://canvas.dev"
+  "api_proxy": "http://canvas.dev",
+  "dev_server_hostname": "localhost",
+  "dev_server_port": 8080
 }
