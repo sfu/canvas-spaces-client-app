@@ -1,5 +1,5 @@
 import ObjectAssign from 'object-assign';
-import React from 'react';
+import React from 'react/addons';
 
 import SpaceNameField from './SpaceNameField';
 import SpaceDescriptionField from './SpaceDescriptionField';
