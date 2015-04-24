@@ -10,7 +10,6 @@ const SpaceNameField = React.createClass({
   propTypes: {
     value: PropTypes.string,
     onChange: PropTypes.func,
-    onError: PropTypes.func.isRequired,
     valueLink: PropTypes.shape({
       value: PropTypes.string.isRequired,
       requestChange: PropTypes.func.isRequired
@@ -79,9 +78,10 @@ const SpaceNameField = React.createClass({
         label="Space Name"
         placeholder="A short, descriptive name for your group (e.g. Basket Weaving Club)"
         onChange={this.handleChange}
-        value={this.props.value}
+        value={this.getValueLink(this.props).value}
         ref="space_name"
-        error={this.state.error}
+        error={this.getErrorLink(this.props).value}
+        onBlur={this.validate}
       />
     );
   }
