@@ -1,13 +1,27 @@
 import React from 'react';
+const {PropTypes} = React;
 import ICInputField from 'FormComponents/ICInputField';
 
 const spacenames = ['Basket Weaving Club'];
 
 const SpaceNameField = React.createClass({
 
-  getInitialState() {
+  propTypes: {
+    value: PropTypes.string,
+    onChange: PropTypes.func,
+    onError: PropTypes.func.isRequired,
+    valueLink: PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      requestChange: PropTypes.func.isRequired
+    })
+  },
+
+  getDefaultProps() {
     return {
-      error: null
+      value: '',
+      error: '',
+      onChange: () => {},
+      valueLink: null
     };
   },
 
