@@ -41,13 +41,11 @@ const SpaceNameField = React.createClass({
   },
 
   handleChange(event) {
-    console.log('change!');
-    const value = this.refs.space_name.getValue();
-    if (this.validate(value)) {
-      this.setState({error: null});
-      this.props.update({name: value});
-    } else {
-      this.setState({error: `A group named ${value} already exists`});
+    const space_name = event.target.value;
+    this.clearError();
+    this.getValueLink(this.props).requestChange(space_name);
+  },
+
   validate(event) {
     const space_name = event.target.value;
 
