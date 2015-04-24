@@ -4,7 +4,7 @@ import ICRadioButtonGroup from 'FormComponents/ICRadioButtonGroup';
 
 const radioButtons = [
   {
-    label: 'Anyone can join this Space',
+    label: 'Anyone can join this Space. This space will be listed in the public Space Directory.',
     value: 'public'
   },
   {
@@ -16,12 +16,34 @@ const radioButtons = [
 const SpaceJoinLevelField = React.createClass({
 
   propTypes: {
-    checked: PropTypes.string.isRequired,
+    value: PropTypes.string,
+    onChange: PropTypes.func,
+    valueLink: PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      requestChange: PropTypes.func.isRequired
+    }).isRequired
+  },
+
+  getDefaultProps() {
+    return {
+      value: '',
+      error: '',
+      onChange: () => {},
+      valueLink: null,
+      errorLink: null
+    };
+  },
+
+  getValueLink(props) {
+    return props.valueLink || {
+      value: props.value,
+      requestChange: props.onChange
+    }
   },
 
   handleChange(event) {
-    const checkedValue = this.refs.join_level_radio_group.getChecked().value;
-    this.props.update({join_level: checkedValue});
+    const space_join_level = event.target.value;
+    this.getValueLink(this.props).requestChange(space_join_level);
   },
 
   render() {
@@ -33,7 +55,6 @@ const SpaceJoinLevelField = React.createClass({
         checked={this.props.checked}
         buttonItems={radioButtons}
       />
-
     );
   }
 
