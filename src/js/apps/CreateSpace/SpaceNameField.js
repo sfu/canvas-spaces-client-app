@@ -26,6 +26,20 @@ const SpaceNameField = React.createClass({
     };
   },
 
+  getValueLink(props) {
+    return props.valueLink || {
+      value: props.value,
+      requestChange: props.onChange
+    }
+  },
+
+  getErrorLink(props) {
+    return props.errorLink || {
+      value: props.value,
+      requestChange: this.setError
+    }
+  },
+
   handleChange(event) {
     console.log('change!');
     const value = this.refs.space_name.getValue();
