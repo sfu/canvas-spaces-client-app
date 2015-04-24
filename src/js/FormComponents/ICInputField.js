@@ -17,6 +17,11 @@ const ICInputField = React.createClass({
     error: PropTypes.string
   },
 
+  getDefaultProps() {
+    return {
+      onBlur: () => {}
+    };
+  },
   getValue() {
     return this.getDOMNode().querySelector('input[type="text"]').value;
   },
@@ -53,6 +58,7 @@ const ICInputField = React.createClass({
           placeholder={this.props.placeholder}
           value={this.props.value}
           onChange={this.props.onChange}
+          onBlur={this.props.onBlur}
         />
         {this.error()}
       </div>
