@@ -64,7 +64,6 @@ const SpaceNameField = React.createClass({
         this.setError(result.message);
       }
     });
-
   },
 
   setError(error) {
@@ -78,14 +77,15 @@ const SpaceNameField = React.createClass({
   render() {
     return (
       <ICInputField
+        ref="space_name"
         name="space_name"
         label="Space Name"
         placeholder="A short, descriptive name for your group (e.g. Basket Weaving Club)"
         onChange={this.handleChange}
         value={this.getValueLink(this.props).value}
-        ref="space_name"
         error={this.getErrorLink(this.props).value}
         onBlur={this.validate}
+
       />
     );
   }
