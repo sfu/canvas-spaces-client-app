@@ -8,7 +8,7 @@ const default_options = () => {
     }
   }
   return opts;
-}
+};
 
 const api = {
 
