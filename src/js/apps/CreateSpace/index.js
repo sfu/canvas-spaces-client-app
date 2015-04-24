@@ -31,7 +31,6 @@ const CreateSpace = React.createClass({
   radioButtonChange(event) {
     const val = this.refs.join_level_radio_group.getChecked().value;
     var newState = ObjectAssign({}, this.state, {space: {join_level: val}});
-    console.log('newstate', newState);
     this.setState({
       space: { join_level: this.refs.join_level_radio_group.getChecked().value }
     });
