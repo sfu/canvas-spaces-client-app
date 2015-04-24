@@ -46,6 +46,7 @@ const CreateSpace = React.createClass({
             <legend>Name and Description</legend>
             <SpaceNameField
               valueLink={this.linkState('space.name')}
+              errorLink={this.linkState('errors.name')}
             />
 
             <SpaceDescriptionField
