@@ -19,7 +19,12 @@ const CreateSpace = React.createClass({
         join_level: 'invitation',
         initial_members: []
       },
-      errors: []
+      errors: {
+        name: '',
+        description: '',
+        join_level: '',
+        initial_members: ''
+      }
     };
   },
 
