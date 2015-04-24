@@ -37,9 +37,6 @@ const CreateSpace = React.createClass({
   },
 
   render() {
-    const commonProps = {
-      update: this.updateState
-    };
     return (
       <div>
         <h2>Create New Space</h2>
@@ -48,7 +45,6 @@ const CreateSpace = React.createClass({
           <fieldset>
             <legend>Name and Description</legend>
             <SpaceNameField
-              {...commonProps}
               valueLink={this.linkState('space.name')}
             />
 
