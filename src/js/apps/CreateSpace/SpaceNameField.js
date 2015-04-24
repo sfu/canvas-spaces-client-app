@@ -13,7 +13,11 @@ const SpaceNameField = React.createClass({
     valueLink: PropTypes.shape({
       value: PropTypes.string.isRequired,
       requestChange: PropTypes.func.isRequired
-    })
+    }).isRequired,
+    errorLink: PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      requestChange: PropTypes.func.isRequired
+    }).isRequired
   },
 
   getDefaultProps() {
