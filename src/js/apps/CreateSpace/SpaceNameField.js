@@ -48,12 +48,30 @@ const SpaceNameField = React.createClass({
       this.props.update({name: value});
     } else {
       this.setState({error: `A group named ${value} already exists`});
+  validate(event) {
+    const space_name = event.target.value;
+
+    // no empty names
+    if (space_name === '') {
+      this.setError('You must enter a name for your Space');
+      return;
     }
+
+    // validate name against api
+    api.validate_space_name(space_name).then((result) => {
+      if (result.error) {
+        this.setError(result.message);
+      }
+    });
+
   },
 
-  validate() {
-    const value = this.refs.space_name.getValue();
-    return spacenames.indexOf(value) === -1;
+  setError(error) {
+    this.getErrorLink(this.props).requestChange(error);
+  },
+
+  clearError() {
+    this.getErrorLink(this.props).requestChange('');
   },
 
   render() {
