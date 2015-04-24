@@ -43,8 +43,14 @@ const ICInputField = React.createClass({
 
   render() {
     const labelClasses = this.props.labelClasses ? `${labelClass} ${this.props.labelClasses}` : labelClass;
-    const inputClasses = this.props.inputClasses ? `${inputClass} ${this.props.inputClasses}` : inputClass;
-    const controlClasses = this.props.error ? `${controlClass} ${controlClass}--error` : controlClass;
+    const controlClasses = this.props.error ? `${controlClass} ${controlClass}--has-error` : controlClass;
+
+    const inputClasses = () => {
+      const baseClass = this.props.error ? `${inputClass} ${inputClass}--has-error` : inputClass;
+      return this.props.inputClasses ? `${baseClass} ${this.props.inputClasses}` : baseClass;
+    };
+
+    console.log(inputClasses());
     return (
       <div className={controlClasses}>
         <label
@@ -54,7 +60,7 @@ const ICInputField = React.createClass({
         <input
           type="text"
           id={this.props.name}
-          className={inputClasses}
+          className={inputClasses()}
           placeholder={this.props.placeholder}
           value={this.props.value}
           onChange={this.props.onChange}
