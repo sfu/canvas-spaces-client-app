@@ -14,8 +14,8 @@ const CreateSpace = React.createClass({
   getInitialState() {
     return {
       space: {
-        name: null,
-        description: null,
+        name: '',
+        description: '',
         join_level: 'invitation',
         initial_members: []
       },
