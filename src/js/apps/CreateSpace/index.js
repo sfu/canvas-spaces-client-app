@@ -28,14 +28,6 @@ const CreateSpace = React.createClass({
     };
   },
 
-  updateState(data) {
-    const newSpaceState = ObjectAssign({}, this.state.space, data);
-    this.setState({
-      space: newSpaceState,
-      errors: this.state.errors
-    });
-  },
-
   radioButtonChange(event) {
     const val = this.refs.join_level_radio_group.getChecked().value;
     var newState = ObjectAssign({}, this.state, {space: {join_level: val}});
@@ -57,8 +49,8 @@ const CreateSpace = React.createClass({
           <fieldset>
             <legend>Name and Description</legend>
             <SpaceNameField
-              value={this.state.space.name}
               {...commonProps}
+              valueLink={this.linkState('space.name')}
             />
 
             <SpaceDescriptionField
