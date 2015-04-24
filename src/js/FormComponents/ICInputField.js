@@ -19,7 +19,8 @@ const ICInputField = React.createClass({
 
   getDefaultProps() {
     return {
-      onBlur: () => {}
+      onBlur: () => {},
+      autoFocus: false
     };
   },
   getValue() {
@@ -64,6 +65,7 @@ const ICInputField = React.createClass({
           value={this.props.value}
           onChange={this.props.onChange}
           onBlur={this.props.onBlur}
+          autoFocus={this.props.autoFocus}
         />
         {this.error()}
       </div>
