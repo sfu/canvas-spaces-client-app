@@ -50,7 +50,6 @@ const ICInputField = React.createClass({
       return this.props.inputClasses ? `${baseClass} ${this.props.inputClasses}` : baseClass;
     };
 
-    console.log(inputClasses());
     return (
       <div className={controlClasses}>
         <label
