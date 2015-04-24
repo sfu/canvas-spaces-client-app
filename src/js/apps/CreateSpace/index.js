@@ -60,7 +60,7 @@ const CreateSpace = React.createClass({
 
             <SpaceJoinLevelField
               checked={this.state.space.join_level}
-              {...commonProps}
+              valueLink={this.linkState('space.join_level')}
             />
           </fieldset>
 
