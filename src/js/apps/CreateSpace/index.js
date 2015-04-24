@@ -50,8 +50,8 @@ const CreateSpace = React.createClass({
             />
 
             <SpaceDescriptionField
-              value={this.state.space.description}
-              {...commonProps}
+              valueLink={this.linkState('space.description')}
+              errorLink={this.linkState('errors.description')}
             />
           </fieldset>
 
