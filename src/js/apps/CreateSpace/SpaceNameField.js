@@ -25,7 +25,8 @@ const SpaceNameField = React.createClass({
       value: '',
       error: '',
       onChange: () => {},
-      valueLink: null
+      valueLink: null,
+      errorLink: null
     };
   },
 
