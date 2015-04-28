@@ -1,8 +1,7 @@
 import React from 'react/addons';
 import TagsInput from 'react-tagsinput';
 
-const validUsers = ['grahamb', 'ahl18', 'keith', 'beef_thong', 'patchin', 'ginny'];
-
+import api from 'utils/api';
 
 const SpaceInitialUsersField = React.createClass({
 
