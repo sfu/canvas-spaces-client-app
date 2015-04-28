@@ -35,19 +35,19 @@ const SpaceInitialUsersField = React.createClass({
 
   render: function() {
     return (
-      <div className="ic-Form-control">
-        <label for="space_initial_users" className="ic-Label">Initial Users</label>
-        <div className="ic-Input">
+      <div onClick={this.focusInput} className="ic-Form-control">
+        <label htmlFor="space_initial_users" className="ic-Label">Initial Users</label>
+        <div className="SFU-tagsinput-wrapper">
           <TagsInput
+            name="space_initial_users"
             ref="space_initial_users"
             valueLink={this.linkState('tags')}
-            placeholder="Add member (e.g. kipling@sfu.ca)"
+            placeholder="e.g. kipling@sfu.ca"
+            classNamespace="SFU"
             addKeys={[9, 13, 32, 188]} // tab, return, space, comma
             removeKeys={[]}
-            validate={this.validate}
             transform={this.transform}
-            onTagAdd={this.onTagAdd}
-            onChangeInput={this.onChangeInput}
+            validateAsync={this.validate}
           />
         </div>
       </div>
