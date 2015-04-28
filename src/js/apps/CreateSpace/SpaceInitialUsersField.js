@@ -83,6 +83,23 @@ const SpaceInitialUsersField = React.createClass({
   onChangeInput(tag) {
     this.clearError();
   },
+
+  renderError() {
+    const error = this.getErrorLink(this.props).value;
+    if (error) {
+      return (
+        <div className="ic-Form-message ic-Form-message--error">
+          <div className="ic-Form-message__Layout">
+            <i className="icon-warning" role="presentation"></i>
+              {error}
+          </div>
+        </div>
+      )
+    } else {
+      return null;
+    }
+  },
+
   render: function() {
     return (
       <div onClick={this.focusInput} className="ic-Form-control">
@@ -100,6 +117,7 @@ const SpaceInitialUsersField = React.createClass({
             validateAsync={this.validate}
           />
         </div>
+        {this.renderError()}
       </div>
     );
   }
