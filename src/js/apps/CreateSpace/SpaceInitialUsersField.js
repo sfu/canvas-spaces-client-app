@@ -13,42 +13,22 @@ const SpaceInitialUsersField = React.createClass({
     };
   },
 
-  saveTags() {
-    console.log('tags: ', this.refs.space_initial_users.getTags().join(', '));
-  },
-
-  validate(tag) {
-    console.log('validate', tag);
-    if (validUsers.indexOf(tag) === -1) {
-      return false;
-    }
-
-    // succeed fast if tag is empty or a duplicate
-    const valueLink = this.refs.space_initial_users.getValueLink();
-    if (tag !== "" && valueLink.value.indexOf(tag) === -1) {
-      return true;
-    }
-
-    // check to see if the user input is a valid sfu/canvas user
-  },
-
   transform(tag) {
-    console.log('transform', tag);
     tag = tag.trim();
     tag = tag.replace('@sfu.ca', '');
     return tag;
   },
 
-  onTagAdd(tag) {
-    console.log('onTagAdd', tag);
+  validate: function (tag, done) {
+    var unique = this.state.tags.indexOf(tag) === -1;
+    if (!unique) { return done(false); }
+
+    api.validate_sfu_username(tag, (result) => {
+      const ok = result.valid_user === true;
+      done(ok);
+    });
   },
 
-  onChangeInput(val) {
-    console.log('onChangeInput', val);
-  },
-
-  onChange(val) {
-    console.log('onChange', val);
   },
 
   render: function() {
