@@ -29,6 +29,8 @@ const SpaceInitialUsersField = React.createClass({
     });
   },
 
+  focusInput(event) {
+    this.refs.space_initial_users.getDOMNode().querySelector('input').focus();
   },
 
   render: function() {
