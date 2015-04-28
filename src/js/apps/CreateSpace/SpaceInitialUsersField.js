@@ -1,11 +1,23 @@
 import React from 'react/addons';
 import TagsInput from 'react-tagsinput';
-
 import api from 'utils/api';
+
+const {PropTypes} = React;
 
 const SpaceInitialUsersField = React.createClass({
 
   mixins: [React.addons.LinkedStateMixin],
+
+  propTypes: {
+    valueLink: PropTypes.shape({
+      value: PropTypes.array.isRequired,
+      requestChange: PropTypes.func.isRequired
+    }).isRequired,
+    errorLink: PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      requestChange: PropTypes.func.isRequired
+    }).isRequired
+  },
 
   getInitialState() {
     return {
