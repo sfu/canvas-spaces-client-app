@@ -1,19 +1,25 @@
-.react-tagsinput {
+.SFU-tagsinput-wrapper {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.SFU-tagsinput {
   border: 1px solid #ccc;
   background: #fff;
-  padding: 10px;
+  padding: 5px;
   overflow-y: auto;
   border-radius: 3px;
 }
 
-.react-tagsinput-tag {
+.SFU-tagsinput-tag {
   display: block;
   background: $canvas-success;
   color: #fff;
-  font-size: 12px;
+  font-size: 14px;
   font-family: 'Helvetica Neue', 'Arial', sans-serif;
   float: left;
-  padding: 5px;
+  padding: 8px 12px 8px 5px;
   margin-right: 5px;
   margin-bottom: 5px;
   text-decoration: none;
@@ -23,15 +29,16 @@
   }
 }
 
-.react-tagsinput-invalid {
-  background: #a03536 !important;
-  color: #fff !important;
-  padding: 5px !important;
-  font-size: 12px !important;
-
+.SFU-tagsinput-validating {
+  background: #FFFACD !important;
 }
 
-.react-tagsinput-remove {
+.SFU-tagsinput-invalid {
+  background: #a03536 !important;
+  color: #fff !important;
+}
+
+.SFU-tagsinput-remove {
   font-weight: normal;
   color: #fff;
   text-decoration: none;
@@ -42,17 +49,47 @@
   }
 }
 
-.react-tagsinput-remove:before {
+.SFU-tagsinput-remove:before {
   content: " x";
 }
 
-.react-tagsinput-input {
-  background: transparent;
-  color: #777;
-  border: 0 !important;
-  box-shadow: none !important;
-  padding: 5px;
+input.SFU-tagsinput-input {
+  width: 20%; height:auto;
+  display: block;
   margin: 0;
-  margin-bottom: 5px !important;
-  outline: none;
+  box-shadow: none;
+  box-sizing: border-box;
+
+  // Establish the basic styles for Canvas text-type inputs
+  transition: all 0.2s ease-out;
+  border: 1px solid #ccc;
+  border-width: 1px;
+  border-style: solid;
+  outline-color: transparent;
+  outline-offset: -$ic-sp;
+  background: $canvas-light;
+  padding: 8px 12px;
+  -webkit-appearance: none;
+
+  @if $use_high_contrast {
+    outline-style: dotted;
+    outline-width: 1px;
+  }
+  @else {
+    outline-style: solid;
+    outline-width: $ic-sp;
+  }
+
+  // Focus state
+  &:focus {
+    @if $use_high_contrast {
+      outline-width: 1px;
+      outline-offset: -3px;
+      outline-color: $canvas-dark;
+    }
+    @else {
+      outline-width: 2px;
+      outline-offset: -2px;
+    }
+  }
 }
