@@ -27,3 +27,27 @@ $canvas-light:                    #fff; // white
 
 $canvas-dark:                     #333;
 
+//==================
+// Layout Variables
+//==================
+$right_side_width:          286px;
+$right_side_margin:         13px;
+$left_side_width:           175px;
+$min_main_width:            510px;
+$max_main_width:            1100px;
+$ic-sp:                     12px;
+$ic-border-radius:          $ic-sp/2;
+$spacing-width:             20px; // TODO - would be nice to phase this one out for $ic-sp
+$borderRadius:              4px;
+$contentBoxPadding:         8px;
+
+
+//=====================
+// Global border colors
+//=====================
+
+$ic-border-color:         $canvas-neutral;
+// If it's a light border, it should be this color.
+$ic-border-light:         darken($canvas-neutral, 6);
+// If it's a dark border, it should be this color.
+$ic-border-dark:          darken($canvas-neutral, 23);
