@@ -66,7 +66,10 @@ const CreateSpace = React.createClass({
 
           <fieldset>
             <legend>Space Membership</legend>
-            <SpaceInitialUsersField />
+            <SpaceInitialUsersField
+              valueLink={this.linkState('space.members')}
+              errorLink={this.linkState('errors.members')}
+            />
           </fieldset>
 
           <fieldset>
