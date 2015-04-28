@@ -41,11 +41,7 @@ module.exports = {
   plugins: [
     pragmas,
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new webpack.ProvidePlugin({
-      'es6-promise': 'es6-promise',
-      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
-    })
+    new webpack.NoErrorsPlugin()
   ],
 
   resolve: {
