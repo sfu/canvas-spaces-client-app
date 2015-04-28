@@ -28,6 +28,18 @@ const api = {
       });
   },
 
+  //
+  // Validates that a SFU Username or Alias is a valid Canvas user
+  //
+  validate_sfu_username(username, cb, headers = default_headers()) {
+    const url = `${urlbase}/validate/user/${username}`;
+    request
+      .get(url)
+      .set(headers)
+      .end(function(err, data) {
+        cb(data.body);
+      });
+  }
 }
 
 
