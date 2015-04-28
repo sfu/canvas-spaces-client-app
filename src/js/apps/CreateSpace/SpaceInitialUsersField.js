@@ -115,6 +115,10 @@ const SpaceInitialUsersField = React.createClass({
             removeKeys={[]}
             transform={this.transform}
             validateAsync={this.validate}
+            onTagAdd={this.onTagAdd}
+            onTagRemove={this.onTagRemove}
+            onBeforeTag={this.onBeforeTag}
+            onChangeInput={this.onChangeInput}
           />
         </div>
         {this.renderError()}
