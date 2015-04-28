@@ -26,9 +26,7 @@ const SpaceInitialUsersField = React.createClass({
   },
 
   transform(tag) {
-    tag = tag.trim();
-    tag = tag.replace('@sfu.ca', '');
-    return tag;
+    return tag.trim().replace('@sfu.ca', '');
   },
 
   validate: function (tag, done) {
