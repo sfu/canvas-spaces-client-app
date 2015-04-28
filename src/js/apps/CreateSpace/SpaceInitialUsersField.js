@@ -43,6 +43,40 @@ const SpaceInitialUsersField = React.createClass({
     this.refs.space_initial_users.getDOMNode().querySelector('input').focus();
   },
 
+  getValueLink(props) {
+    return props.valueLink || {
+      value: props.value,
+      requestChange: props.onChange
+    }
+  },
+
+  getErrorLink(props) {
+    return props.errorLink || {
+      value: props.value,
+      requestChange: this.setError
+    }
+  },
+
+  onTagAdd(tag) {
+    this.getValueLink(this.props).requestChange(this.state.tags);
+  },
+
+  onTagRemove(tag) {
+    const newtags = this.state.tags.filter(function(a) { return a !== tag });
+    this.getValueLink(this.props).requestChange(newtags);
+  },
+
+  setError(error) {
+    this.getErrorLink(this.props).requestChange(error);
+  },
+
+  clearError() {
+    this.getErrorLink(this.props).requestChange('');
+  },
+
+  onChangeInput(tag) {
+    this.clearError();
+  },
   render: function() {
     return (
       <div onClick={this.focusInput} className="ic-Form-control">
