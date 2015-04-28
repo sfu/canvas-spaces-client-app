@@ -1,14 +1,16 @@
-const default_options = () => {
-  var opts = {};
+import request from 'superagent';
+
+const default_headers = () => {
+  var headers = {
+    Accept: 'application/json'
+  };
   if (__DEV__) {
-    opts = {
-      headers: {
-        Authorization: __CANVAS_API_TOKEN__
-      }
-    }
+    headers['Authorization'] = __CANVAS_API_TOKEN__;
   }
-  return opts;
+  return headers;
 };
+
+const urlbase = '/api/v1/canvasspaces';
 
 const api = {
 
@@ -16,12 +18,15 @@ const api = {
   // Validates that a space name is unique
   // Note: The API downcases the group name when comparing
   //
-  validate_space_name(name, options = default_options()) {
-    const url = `/api/v1/canvasspaces/validate/name/${name}`;
-    return fetch(url, options)
-      .then((res) => res.json())
-      .catch((error) => { console.log(error); });
-  }
+  validate_space_name(name, cb, headers = default_headers()) {
+    const url = `${urlbase}/validate/name/${name}`;
+    request
+      .get(url)
+      .set(headers)
+      .end(function(err, data) {
+        cb(data.body);
+      });
+  },
 
 }
 
