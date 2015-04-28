@@ -30,13 +30,19 @@ const SpaceInitialUsersField = React.createClass({
   },
 
   validate: function (tag, done) {
-    var unique = this.state.tags.indexOf(tag) === -1;
-    if (!unique) { return done(false); }
+    const unique = this.state.tags.indexOf(tag) === -1;
 
-    api.validate_sfu_username(tag, (result) => {
-      const ok = result.valid_user === true;
-      done(ok);
-    });
+    if (!unique) {
+      this.setError(`"${tag}" already exists`);
+      return done(false);
+    }
+
+    if (tag !== '') {
+      api.validate_sfu_username(tag, (result) => {
+        this.setError(`"${tag}" is not a valid Canvas user`)
+        done(result.valid_user === true);
+      });
+    }
   },
 
   focusInput(event) {
