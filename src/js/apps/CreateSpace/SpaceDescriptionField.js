@@ -1,8 +1,15 @@
 import React from 'react';
-const {PropTypes} = React;
 import ICInputField from 'FormComponents/ICInputField';
+import HandleErrorsMixin from 'mixins/HandleErrorsMixin';
+import GetValueLinkMixin from 'mixins/GetValueLinkMixin';
 
+const {PropTypes} = React;
 const SpaceDescriptionField = React.createClass({
+
+  mixins: [
+    HandleErrorsMixin,
+    GetValueLinkMixin
+  ],
 
   propTypes: {
     value: PropTypes.string,
@@ -27,20 +34,6 @@ const SpaceDescriptionField = React.createClass({
     };
   },
 
-  getValueLink(props) {
-    return props.valueLink || {
-      value: props.value,
-      requestChange: props.onChange
-    }
-  },
-
-  getErrorLink(props) {
-    return props.errorLink || {
-      value: props.value,
-      requestChange: this.setError
-    }
-  },
-
   handleChange(event) {
     const space_description = event.target.value;
     this.clearError();
@@ -55,14 +48,6 @@ const SpaceDescriptionField = React.createClass({
       this.setError('You must enter a description for your Space');
       return;
     }
-  },
-
-  setError(error) {
-    this.getErrorLink(this.props).requestChange(error);
-  },
-
-  clearError() {
-    this.getErrorLink(this.props).requestChange('');
   },
 
   render() {

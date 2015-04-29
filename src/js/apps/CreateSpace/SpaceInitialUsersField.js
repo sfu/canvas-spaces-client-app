@@ -1,12 +1,20 @@
 import React from 'react/addons';
 import TagsInput from 'react-tagsinput';
 import api from 'utils/api';
+import HandleErrorsMixin from 'mixins/HandleErrorsMixin';
+import GetValueLinkMixin from 'mixins/GetValueLinkMixin';
+import ReactTagsInputHelpersMixin from 'mixins/ReactTagsInputHelpersMixin';
 
 const {PropTypes} = React;
 
 const SpaceInitialUsersField = React.createClass({
 
-  mixins: [React.addons.LinkedStateMixin],
+  mixins: [
+    React.addons.LinkedStateMixin,
+    HandleErrorsMixin,
+    GetValueLinkMixin,
+    ReactTagsInputHelpersMixin
+  ],
 
   propTypes: {
     valueLink: PropTypes.shape({
@@ -25,11 +33,7 @@ const SpaceInitialUsersField = React.createClass({
     };
   },
 
-  transform(tag) {
-    return tag.trim().replace('@sfu.ca', '');
-  },
-
-  validate: function (tag, done) {
+  validate(tag, done) {
     const unique = this.state.tags.indexOf(tag) === -1;
 
     if (!unique) {
@@ -39,64 +43,12 @@ const SpaceInitialUsersField = React.createClass({
 
     if (tag !== '') {
       api.validate_sfu_username(tag, (result) => {
-        this.setError(`"${tag}" is not a valid Canvas user`)
-        done(result.valid_user === true);
+        const valid_user = result.valid_user;
+        if (!valid_user) {
+          this.setError(`"${tag}" is not a valid Canvas user`);
+        }
+        done(valid_user);
       });
-    }
-  },
-
-  focusInput(event) {
-    this.refs.space_initial_users.getDOMNode().querySelector('input').focus();
-  },
-
-  getValueLink(props) {
-    return props.valueLink || {
-      value: props.value,
-      requestChange: props.onChange
-    }
-  },
-
-  getErrorLink(props) {
-    return props.errorLink || {
-      value: props.value,
-      requestChange: this.setError
-    }
-  },
-
-  onTagAdd(tag) {
-    this.getValueLink(this.props).requestChange(this.state.tags);
-  },
-
-  onTagRemove(tag) {
-    const newtags = this.state.tags.filter(function(a) { return a !== tag });
-    this.getValueLink(this.props).requestChange(newtags);
-  },
-
-  setError(error) {
-    this.getErrorLink(this.props).requestChange(error);
-  },
-
-  clearError() {
-    this.getErrorLink(this.props).requestChange('');
-  },
-
-  onChangeInput(tag) {
-    this.clearError();
-  },
-
-  renderError() {
-    const error = this.getErrorLink(this.props).value;
-    if (error) {
-      return (
-        <div className="ic-Form-message ic-Form-message--error">
-          <div className="ic-Form-message__Layout">
-            <i className="icon-warning" role="presentation"></i>
-              {error}
-          </div>
-        </div>
-      )
-    } else {
-      return null;
     }
   },
 
@@ -111,7 +63,7 @@ const SpaceInitialUsersField = React.createClass({
             valueLink={this.linkState('tags')}
             placeholder="e.g. kipling@sfu.ca"
             classNamespace="SFU"
-            addKeys={[9, 13, 32, 188]} // tab, return, space, comma
+            addKeys={[13, 32, 188]} // return, space, comma
             removeKeys={[]}
             transform={this.transform}
             validateAsync={this.validate}

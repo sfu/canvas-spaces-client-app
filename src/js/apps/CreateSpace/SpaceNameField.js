@@ -1,11 +1,16 @@
 import React from 'react';
-const {PropTypes} = React;
 import ICInputField from 'FormComponents/ICInputField';
 import api from 'utils/api';
+import HandleErrorsMixin from 'mixins/HandleErrorsMixin';
+import GetValueLinkMixin from 'mixins/GetValueLinkMixin';
 
-const spacenames = ['Basket Weaving Club'];
-
+const {PropTypes} = React;
 const SpaceNameField = React.createClass({
+
+  mixins: [
+    HandleErrorsMixin,
+    GetValueLinkMixin
+  ],
 
   propTypes: {
     value: PropTypes.string,
@@ -30,20 +35,6 @@ const SpaceNameField = React.createClass({
     };
   },
 
-  getValueLink(props) {
-    return props.valueLink || {
-      value: props.value,
-      requestChange: props.onChange
-    }
-  },
-
-  getErrorLink(props) {
-    return props.errorLink || {
-      value: props.value,
-      requestChange: this.setError
-    }
-  },
-
   handleChange(event) {
     const space_name = event.target.value;
     this.clearError();
@@ -65,14 +56,6 @@ const SpaceNameField = React.createClass({
         this.setError(`A Space named ${space_name} already exists`);
       }
     });
-  },
-
-  setError(error) {
-    this.getErrorLink(this.props).requestChange(error);
-  },
-
-  clearError() {
-    this.getErrorLink(this.props).requestChange('');
   },
 
   render() {
