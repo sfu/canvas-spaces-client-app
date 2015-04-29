@@ -52,8 +52,8 @@ const SpaceNameField = React.createClass({
 
     // validate name against api
     api.validate_space_name(space_name, (result) => {
-      if (result.status === 'error' && result.error === 'ERR_DUPLICATE_SPACE_NAME') {
-        this.setError(`A Space named ${space_name} already exists`);
+      if (!result.valid_group_name) {
+        this.setError(result.message);
       }
     });
   },
