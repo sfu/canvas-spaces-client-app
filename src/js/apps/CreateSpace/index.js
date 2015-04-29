@@ -7,6 +7,7 @@ import SpaceNameField from './SpaceNameField';
 import SpaceDescriptionField from './SpaceDescriptionField';
 import SpaceJoinLevelField from './SpaceJoinLevelField';
 import SpaceInitialUsersField from './SpaceInitialUsersField';
+import SpaceMaillistsField from './SpaceMaillistsField';
 
 const CreateSpace = React.createClass({
   mixins: [DeepLinkedStateMixin],
@@ -24,7 +25,8 @@ const CreateSpace = React.createClass({
         name: '',
         description: '',
         join_level: '',
-        members: ''
+        members: '',
+        maillists: ''
       }
     };
   },
@@ -71,6 +73,12 @@ const CreateSpace = React.createClass({
               valueLink={this.linkState('space.members')}
               errorLink={this.linkState('errors.members')}
             />
+
+            <SpaceMaillistsField
+              valueLink={this.linkState('space.maillists')}
+              errorLink={this.linkState('errors.maillists')}
+            />
+
           </fieldset>
 
           <fieldset>
