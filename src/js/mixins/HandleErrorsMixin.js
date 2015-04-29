@@ -7,6 +7,10 @@ const HandleErrorsMixin = {
     this.getErrorLink(this.props).requestChange('');
   },
 
+  hasErrors() {
+    return this.props.errorLink.value.length > 0;
+  },
+
   getErrorLink(props) {
     return props.errorLink || {
       value: props.value,

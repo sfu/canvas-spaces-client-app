@@ -22,6 +22,11 @@ const ReactTagsInputhelpersMixin = {
     return tag.trim().replace('@sfu.ca', '');
   },
 
+  controlClasses() {
+    const controlBaseClass = 'ic-Form-control';
+    return this.hasErrors() ? `${controlBaseClass} ic-Form-control--has-error` : controlBaseClass;
+  },
+
   renderError() {
     const error = this.getErrorLink(this.props).value;
     if (error) {

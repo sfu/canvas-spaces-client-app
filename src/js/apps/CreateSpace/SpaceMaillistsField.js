@@ -54,7 +54,7 @@ const SpaceMaillistField = React.createClass({
 
   render: function() {
     return (
-      <div onClick={this.focusInput} className="ic-Form-control">
+      <div onClick={this.focusInput} className={this.controlClasses()}>
         <label htmlFor="space_maillists" className="ic-Label">Maillists</label>
         <div className="SFU-tagsinput-wrapper">
           <TagsInput
