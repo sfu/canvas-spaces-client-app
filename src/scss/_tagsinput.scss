@@ -21,9 +21,9 @@
   float: left;
   padding: 8px 12px 8px 5px;
   margin-right: 5px;
-  margin-bottom: 5px;
   text-decoration: none;
   border-radius: 2px;
+  border: 1px solid $canvas-success;
   span {
     padding: 5px;
   }
@@ -36,6 +36,7 @@
 .SFU-tagsinput-invalid {
   background: #a03536 !important;
   color: #fff !important;
+  border-color: #ad393a;
 }
 
 .SFU-tagsinput-remove {
