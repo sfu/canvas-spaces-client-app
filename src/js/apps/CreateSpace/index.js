@@ -9,6 +9,15 @@ import SpaceJoinLevelField from './SpaceJoinLevelField';
 import SpaceInitialUsersField from './SpaceInitialUsersField';
 import SpaceMaillistsField from './SpaceMaillistsField';
 
+const initialErrorState = {
+  name: '',
+  description: '',
+  join_level: '',
+  members: '',
+  maillists: ''
+};
+
+
 const CreateSpace = React.createClass({
   mixins: [DeepLinkedStateMixin],
 
@@ -21,13 +30,7 @@ const CreateSpace = React.createClass({
         members: [],
         maillists: []
       },
-      errors: {
-        name: '',
-        description: '',
-        join_level: '',
-        members: '',
-        maillists: ''
-      }
+      errors: initialErrorState
     };
   },
 
@@ -37,6 +40,12 @@ const CreateSpace = React.createClass({
     this.setState({
       space: { join_level: this.refs.join_level_radio_group.getChecked().value }
     });
+  },
+
+  disableSubmit() {
+    if (this.state.space.name === '' || this.state.space.description === '') { return true; }
+    if (JSON.stringify(initialErrorState) !== JSON.stringify(this.state.errors)) { return true; }
+    return false;
   },
 
   render() {
@@ -78,8 +87,11 @@ const CreateSpace = React.createClass({
               valueLink={this.linkState('space.maillists')}
               errorLink={this.linkState('errors.maillists')}
             />
-
           </fieldset>
+
+          <div className="ic-Form-actions">
+            <button className="Button Button--primary" disabled={this.disableSubmit()} type="submit">Create Space</button>
+          </div>
 
           <fieldset>
             <legend>Debug</legend>
@@ -88,10 +100,6 @@ const CreateSpace = React.createClass({
             </pre>
           </fieldset>
 
-          <div className="ic-Form-actions">
-            <button className="Button" type="button">Cancel</button>
-            <button className="Button Button--primary" type="submit">Submit</button>
-          </div>
 
         </div>
       </div>
