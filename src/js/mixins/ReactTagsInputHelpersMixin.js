@@ -2,7 +2,7 @@ import React from 'react';
 
 const ReactTagsInputhelpersMixin = {
   focusInput(event) {
-    this.refs.space_initial_users.getDOMNode().querySelector('input').focus();
+    this.refs[Object.keys(this.refs)[0]].getDOMNode().querySelector('input').focus();
   },
 
   onTagAdd(tag) {
