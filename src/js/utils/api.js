@@ -39,6 +39,19 @@ const api = {
       .end(function(err, data) {
         cb(data.body);
       });
+  },
+
+  //
+  // Validates that a SFU Maillist is, well, valid
+  //
+  validate_maillist(maillist, cb, headers = default_headers()) {
+    const url = `${urlbase}/validate/maillist/${maillist}`;
+    request
+      .get(url)
+      .set(headers)
+      .end(function(err, data) {
+        cb(data.body);
+      });
   }
 }
 
