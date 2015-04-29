@@ -42,7 +42,7 @@ const SpaceNameField = React.createClass({
   },
 
   validate(event) {
-    const space_name = event.target.value;
+    const space_name = event.target.value.trim();
 
     // no empty names
     if (space_name === '') {

@@ -41,7 +41,7 @@ const SpaceDescriptionField = React.createClass({
   },
 
   validate(event) {
-    const space_description = event.target.value;
+    const space_description = event.target.value.trim();
 
     // no empty descriptions
     if (space_description === '') {
