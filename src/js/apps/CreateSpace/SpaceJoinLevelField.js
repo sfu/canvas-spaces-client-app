@@ -5,11 +5,11 @@ import ICRadioButtonGroup from 'FormComponents/ICRadioButtonGroup';
 const radioButtons = [
   {
     label: 'Anyone can join this Space. This space will be listed in the public Space Directory.',
-    value: 'public'
+    value: 'free_to_join'
   },
   {
     label: 'People must be invited to join this Space',
-    value: 'invitation'
+    value: 'invite_only'
   }
 ];
 

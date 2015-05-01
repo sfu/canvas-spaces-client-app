@@ -12,7 +12,7 @@ import SpaceMaillistsField from './SpaceMaillistsField';
 const initialErrorState = {
   name: '',
   description: '',
-  join_level: '',
+  join_type: '',
   members: '',
   maillists: ''
 };
@@ -26,7 +26,7 @@ const CreateSpace = React.createClass({
       space: {
         name: '',
         description: '',
-        join_level: 'invitation',
+        join_type: 'invite_only',
         members: [],
         maillists: []
       },
@@ -63,8 +63,8 @@ const CreateSpace = React.createClass({
             <legend>Privacy Options</legend>
 
             <SpaceJoinLevelField
-              checked={this.state.space.join_level}
-              valueLink={this.linkState('space.join_level')}
+              checked={this.state.space.join_type}
+              valueLink={this.linkState('space.join_type')}
             />
           </fieldset>
 
