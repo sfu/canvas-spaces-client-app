@@ -82,7 +82,14 @@ const CreateSpace = React.createClass({
           </fieldset>
 
           <div className="ic-Form-actions">
-            <button className="Button Button--primary" disabled={this.disableSubmit()} type="submit">Create Space</button>
+            <button
+              className="Button Button--primary"
+              disabled={this.disableSubmit()}
+              type="submit"
+              onClick={this.handleSubmit}
+          >
+            Create Space
+          </button>
           </div>
 
           <fieldset>
