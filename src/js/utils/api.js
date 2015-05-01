@@ -24,10 +24,16 @@ const api = {
       });
   },
 
+  create_space(data, cb, headers = default_headers()) {
     request
+      .post(`${urlbase}/groups`)
       .set(headers)
+      .send(data)
+      .end((err, response) => {
+        cb(response.body)
       });
   }
+
 }
 
 
