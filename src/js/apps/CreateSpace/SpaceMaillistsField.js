@@ -42,7 +42,7 @@ const SpaceMaillistField = React.createClass({
     }
 
     if (tag !== '') {
-      api.validate_maillist(tag, (result) => {
+      api.validate_field('maillist', tag, (result) => {
         const valid = result.valid_maillist;
         if (!valid) {
           this.setError(`"${tag}" is not a valid maillist`);

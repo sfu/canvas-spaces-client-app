@@ -42,7 +42,7 @@ const SpaceInitialUsersField = React.createClass({
     }
 
     if (tag !== '') {
-      api.validate_sfu_username(tag, (result) => {
+      api.validate_field('user', tag, (result) => {
         const valid_user = result.valid_user;
         if (!valid_user) {
           this.setError(`"${tag}" is not a valid Canvas user`);

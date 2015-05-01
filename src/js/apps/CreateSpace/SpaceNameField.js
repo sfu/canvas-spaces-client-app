@@ -51,7 +51,7 @@ const SpaceNameField = React.createClass({
     }
 
     // validate name against api
-    api.validate_space_name(space_name, (result) => {
+    api.validate_field('name', space_name, (result) => {
       if (!result.valid_group_name) {
         this.setError(result.message);
       }
