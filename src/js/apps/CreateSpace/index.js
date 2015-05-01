@@ -34,14 +34,6 @@ const CreateSpace = React.createClass({
     };
   },
 
-  radioButtonChange(event) {
-    const val = this.refs.join_level_radio_group.getChecked().value;
-    var newState = ObjectAssign({}, this.state, {space: {join_level: val}});
-    this.setState({
-      space: { join_level: this.refs.join_level_radio_group.getChecked().value }
-    });
-  },
-
   disableSubmit() {
     if (this.state.space.name === '' || this.state.space.description === '') { return true; }
     if (JSON.stringify(initialErrorState) !== JSON.stringify(this.state.errors)) { return true; }
