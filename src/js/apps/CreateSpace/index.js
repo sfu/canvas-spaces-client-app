@@ -3,6 +3,7 @@ import ObjectAssign from 'object-assign';
 import React from 'react';
 import DeepLinkedStateMixin from 'mixins/DeepLinkedStateMixin';
 
+import api from 'utils/api';
 import SpaceNameField from './SpaceNameField';
 import SpaceDescriptionField from './SpaceDescriptionField';
 import SpaceJoinLevelField from './SpaceJoinLevelField';
@@ -38,6 +39,34 @@ const CreateSpace = React.createClass({
     if (this.state.space.name === '' || this.state.space.description === '') { return true; }
     if (JSON.stringify(initialErrorState) !== JSON.stringify(this.state.errors)) { return true; }
     return false;
+  },
+
+  handleSubmit() {
+    if (this.disableSubmit()) {
+      // TODO: make this a better error. Flash message?
+      window.alert('Something is wrong. Please check for errors.');
+      return;
+    }
+
+    api.create_space(this.state.space, (response) => {
+      if (response.status !== 200) {
+        if (response.body.hasOwnProperty('field')) {
+          this.linkState(`errors.${response.body.field}`).requestChange(response.body.error);
+        } else {
+          // TODO: handle generic errors
+          window.alert('Something went wrong.');
+        }
+      } else {
+        // redirect to the new space
+        var space_url = `/groups/${response.body.id}`;
+        if (__DEV__) {
+          space_url = `http://canvas.dev${space_url}`;
+        }
+        // TODO: Set a flash message before redirecting?
+        window.location = space_url;
+      }
+    }.bind(this));
+
   },
 
   render() {
@@ -84,7 +113,7 @@ const CreateSpace = React.createClass({
           <div className="ic-Form-actions">
             <button
               className="Button Button--primary"
-              disabled={this.disableSubmit()}
+
               type="submit"
               onClick={this.handleSubmit}
           >
