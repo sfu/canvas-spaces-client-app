@@ -7,6 +7,9 @@ const default_headers = () => {
   if (__DEV__) {
     headers['Authorization'] = __CANVAS_API_TOKEN__;
   }
+  if (!__DEV__) {
+    headers['X-CSRF-Token'] = $.cookie('_csrf_token');
+  }
   return headers;
 };
 
