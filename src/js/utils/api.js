@@ -35,8 +35,16 @@ const api = {
       .end((err, response) => {
         cb(response)
       });
-  }
+  },
 
+  get_spaces(cb, headers = default_headers()) {
+    request
+      .get(`${urlbase}/groups`)
+      .set(headers)
+      .end((err, response) => {
+        cb(response.body);
+      });
+  }
 }
 
 
