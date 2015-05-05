@@ -30,7 +30,7 @@ const api = {
       .set(headers)
       .send(data)
       .end((err, response) => {
-        cb(response.body)
+        cb(response)
       });
   }
 
