@@ -12,20 +12,8 @@ if (__DEV__) {
 
 const App = React.createClass({
   render() {
-
     return (
-      <div>
-        <h1 style={{ marginTop: 0}}>Canvas Spaces</h1>
-        <ul>
-          <li><Link to="app">Dashboard</Link></li>
-          <li><Link to="create_space">Create New Space</Link></li>
-          <li><Link to="my_spaces">My Spaces</Link></li>
-          <li><Link to="space_directory">Public Spaces</Link></li>
-        </ul>
-        <div id="Handler">
-          <RouteHandler/>
-        </div>
-      </div>
+      <RouteHandler />
     );
   }
 });
@@ -40,17 +28,38 @@ const Dashboard = React.createClass({
   }
 });
 
+const NotFound = React.createClass({
+  render() {
+    const divstyle = {
+      textAlign: 'center',
+      paddingTop: '35px'
+    };
+
+    const imgstyle = {
+      width: '25%'
+    };
+
+    return (
+      <div style={divstyle}>
+        <img style={imgstyle} src="/images/sadpanda.svg" alt="The panda is sad because it couldn't find the page you wanted" />
+        <h2>Page Not Found</h2>
+        <p>Oops, we couldn't find that page.</p>
+      </div>
+    );
+  }
+});
+
 const route_base_path = __DEV__ ? '/' : '/canvasspaces';
-//TODO: make this render a proper not-found handler, preferably with a sad panda. Bonus points if it sheds a single,  animated, tear. */}
 const routes = (
   <Route name="app" path={route_base_path} handler={App}>
     <Route name="create_space" handler={CreateSpace} />
     <Route name="my_spaces" handler={MySpaces} />
     <Route name="space_directory" handler={SpaceDirectory} />
     <DefaultRoute handler={Dashboard} />
-    <NotFoundRoute handler={Dashboard}/>
+    <NotFoundRoute handler={NotFound}/>
   </Route>
 );
+
 
 Router.run(routes, Router.HistoryLocation, (Handler) => {
   React.render(<Handler/>, document.getElementById('CanvasSpacesApp'))

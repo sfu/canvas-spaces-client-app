@@ -57,6 +57,7 @@ module.exports = {
     proxy: {
       '/api/v1/*': config.get('api_proxy'),
       '/font/*': config.get('api_proxy'),
+      '/images/*': config.get('api_proxy')
     }
   }
 }
