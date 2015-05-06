@@ -41,18 +41,18 @@ const CreateSpace = React.createClass({
     return false;
   },
 
+  flashError(error_message) {
+    if (__DEV__) {
+      window.alert(error_message);
+    } else {
+      $.flashError(error_message);
+    }
+  },
+
   handleSubmit() {
-    // TODO: DRY up displaying errors
     const error_message = 'There was a problem creating your space. Please check the form for errors and try again.'
     if (this.disableSubmit()) {
-      if (__DEV__) {
-        window.alert(error_message);
-      }
-
-      if (!__DEV__) {
-        $.flashError(error_message);
-      }
-
+      this.flashError(error_message);
       return;
     }
 
@@ -62,13 +62,7 @@ const CreateSpace = React.createClass({
         if (response.body.hasOwnProperty('field')) {
           this.linkState(`errors.${response.body.field}`).requestChange(response.body.error);
         }
-        if (!__DEV__) {
-          $.flashError(error_message);
-        }
-
-        if (__DEV__) {
-          window.alert(error_message);
-        }
+        this.flashError(error_message);
       } else {
         // redirect to the new space
         var space_url = `/groups/${response.body.id}`;
