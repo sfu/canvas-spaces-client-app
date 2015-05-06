@@ -1,13 +1,22 @@
 .canvas_spaces {
   padding: 25px 35px 55px 35px;
-}
 
-fieldset legend {
-  font-size: 1.25em;
-}
+  h1 {
+    margin-top: 0;
+  }
 
-.ic-Form-actions button {
-  margin-left: 5px;
+  fieldset legend {
+    font-size: 1.25em;
+  }
+
+  .ic-Form-actions button {
+    margin-left: 5px;
+  }
+
+  .header-bar {
+    padding: 0;
+  }
+
 }
 
 @import 'tagsinput';
