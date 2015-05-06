@@ -44,6 +44,15 @@ const api = {
       .end((err, response) => {
         cb(response.body);
       });
+  },
+
+  get_spaces_for_user(user_id, cb, headers = default_headers()) {
+    request
+      .get(`${urlbase}/users/self/groups`)
+      .set(headers)
+      .end((err, response) => {
+        cb(response.body)
+      });
   }
 }
 
