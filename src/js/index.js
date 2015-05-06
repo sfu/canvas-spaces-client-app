@@ -40,12 +40,15 @@ const Dashboard = React.createClass({
   }
 });
 
+const route_base_path = __DEV__ ? '/' : '/canvasspaces';
+//TODO: make this render a proper not-found handler, preferably with a sad panda. Bonus points if it sheds a single,  animated, tear. */}
 const routes = (
-  <Route name="app" path="/" handler={App}>
+  <Route name="app" path={route_base_path} handler={App}>
     <Route name="create_space" handler={CreateSpace} />
     <Route name="my_spaces" handler={MySpaces} />
     <Route name="space_directory" handler={SpaceDirectory} />
     <DefaultRoute handler={Dashboard} />
+    <NotFoundRoute handler={Dashboard}/>
   </Route>
 );
 
