@@ -1,7 +1,7 @@
 // CANVAS COLOUR VARIABLES
 // PULLED FROM /app/stylesheets/base/_variables
 
-$use_high_contrast: true;
+$use_high_contrast: false;
 
 $canvas-primary:                  #0099e0 !default; // light blue
 @if $use_high_contrast { $canvas-primary: #0073ac; }
