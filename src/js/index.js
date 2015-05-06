@@ -18,16 +18,6 @@ const App = React.createClass({
   }
 });
 
-const Dashboard = React.createClass({
-  render() {
-    return (
-      <div>
-        <h2>Dashboard</h2>
-      </div>
-    );
-  }
-});
-
 const NotFound = React.createClass({
   render() {
     const divstyle = {
@@ -55,11 +45,10 @@ const routes = (
     <Route name="create_space" handler={CreateSpace} />
     <Route name="my_spaces" handler={MySpaces} />
     <Route name="space_directory" handler={SpaceDirectory} />
-    <DefaultRoute handler={Dashboard} />
+    <DefaultRoute handler={MySpaces} />
     <NotFoundRoute handler={NotFound}/>
   </Route>
 );
-
 
 Router.run(routes, Router.HistoryLocation, (Handler) => {
   React.render(<Handler/>, document.getElementById('CanvasSpacesApp'))
