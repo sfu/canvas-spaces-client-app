@@ -42,19 +42,32 @@ const CreateSpace = React.createClass({
   },
 
   handleSubmit() {
+    // TODO: DRY up displaying errors
+    const error_message = 'There was a problem creating your space. Please check the form for errors and try again.'
     if (this.disableSubmit()) {
-      // TODO: make this a better error. Flash message?
-      window.alert('Something is wrong. Please check for errors.');
+      if (__DEV__) {
+        window.alert(error_message);
+      }
+
+      if (!__DEV__) {
+        $.flashError(error_message);
+      }
+
       return;
     }
 
     api.create_space(this.state.space, (response) => {
       if (response.status !== 200) {
+
         if (response.body.hasOwnProperty('field')) {
           this.linkState(`errors.${response.body.field}`).requestChange(response.body.error);
-        } else {
-          // TODO: handle generic errors
-          window.alert('Something went wrong.');
+        }
+        if (!__DEV__) {
+          $.flashError(error_message);
+        }
+
+        if (__DEV__) {
+          window.alert(error_message);
         }
       } else {
         // redirect to the new space
@@ -62,7 +75,7 @@ const CreateSpace = React.createClass({
         if (__DEV__) {
           space_url = `http://canvas.dev${space_url}`;
         }
-        // TODO: Set a flash message before redirecting?
+        // TODO: show a modal with a choice: go to new space, or create a new one?
         window.location = space_url;
       }
     }.bind(this));
