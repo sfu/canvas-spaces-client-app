@@ -6,14 +6,16 @@ const MySpaces = React.createClass({
 
   getInitialState() {
     return {
+      links: null,
       spaces: []
     };
   },
 
   componentDidMount() {
-    api.get_spaces_for_user('self', (spaces) => {
+    api.get_spaces_for_user('self', (spaces, links) => {
       this.setState({
-        spaces: spaces
+        spaces: spaces,
+        links: links
       })
     }.bind(this))
   },
