@@ -13,6 +13,22 @@ const default_headers = () => {
   return headers;
 };
 
+// taken from superagent:
+// /lib/node/utils.js
+const parse_link_header = (response) => {
+  if (!response.header.link) {
+    return null;
+  }
+  return response.header.link.split(/ *, */).reduce(function(obj, str){
+    var parts = str.split(/ *; */);
+    var url = parts[0].slice(1, -1);
+    var rel = parts[1].split(/ *= */)[1].slice(1, -1);
+    obj[rel] = url;
+    return obj;
+  }, {});
+};
+
+
 const urlbase = '/api/v1/canvasspaces';
 
 const api = {
@@ -51,7 +67,9 @@ const api = {
       .get(`${urlbase}/users/self/groups`)
       .set(headers)
       .end((err, response) => {
-        cb(response.body)
+        const {body} = response;
+        const links = parse_link_header(response);
+        cb(body, links);
       });
   }
 }
