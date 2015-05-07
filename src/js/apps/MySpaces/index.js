@@ -1,5 +1,6 @@
 import React from 'react';
 import CommonHeader from 'apps/Shared/CommonHeader';
+import SpaceTile from 'apps/Shared/SpaceTile';
 import api from 'utils/api';
 
 const MySpaces = React.createClass({
@@ -21,6 +22,21 @@ const MySpaces = React.createClass({
   },
 
   render() {
+    const spaceTiles = () => {
+      return this.state.spaces.map((space) => {
+        const leader = space.is_leader ? (<i className="icon-star"></i>) : '';
+        return (
+          <SpaceTile
+            key={`space_${space.id}`}
+            name={space.name}
+            description={space.description}
+            is_leader={space.is_leader}
+            space_id={space.id}
+          />
+        );
+      });
+    }
+
     return (
       <div>
         <CommonHeader />
@@ -29,15 +45,15 @@ const MySpaces = React.createClass({
           <div className="grid-row">
             <div className="col-xs">
               <h2>My Canvas Spaces</h2>
-              <p>
-                These are the spaces of which you are a member.
-                Spaces of which you are the Leader are marked with a <i className="icon-star"></i>
-              </p>
             </div>
           </div>
         </div>
 
         <div className="grid-row">
+          {spaceTiles()}
+        </div>
+
+        <div style={{marginTop: '20px'}} className="grid-row">
           <div className="col-xs">
             <pre>{JSON.stringify(this.state, null, 2)}</pre>
           </div>
