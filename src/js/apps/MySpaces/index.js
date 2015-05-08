@@ -67,7 +67,7 @@ const MySpaces = React.createClass({
     };
 
     const spaceTiles = () => {
-      if (!this.state.spaces || !this.state.spaces.length) {
+      if (this.state.spaces.length ===0 && !this.state.loading) {
         return (
           <div className="content-box">
             <div className="grid-row center-md">
