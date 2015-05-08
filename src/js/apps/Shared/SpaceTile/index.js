@@ -24,7 +24,7 @@ const SpaceTile = React.createClass({
 
     return (
       <a href={space_url}>
-        <div className="SpaceTile--Container">
+        <div className="SpaceTile">
           <SpaceTile_Information
             name={this.props.name}
             description={this.props.description}
