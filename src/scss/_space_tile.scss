@@ -1,14 +1,15 @@
-.SpaceTile--Container {
+.SpaceTile {
   display: flex;
   justify-content: flex-start;
   align-items: stretch;
   border-radius: .5em;
   width: 40em;
-  height: 10em;
+  height: 11em;
   overflow: hidden;
-  border: 2px solid $canvas-primary;
+  border: 1px solid $canvas-primary;
   background-color: rgba($canvas-primary, 0.02);
   margin: 1em;
+  margin-right: 5em;
   color: #000;
 }
 
