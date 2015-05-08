@@ -1,10 +1,13 @@
 'use strict';
 
 import React from 'react';
+import Router from 'react-router';
 import CommonHeader from 'apps/Shared/CommonHeader';
 import SpaceTile from 'apps/Shared/SpaceTile';
 import LoadMoreDingus from 'apps/Shared/LoadMoreDingus';
 import api from 'utils/api';
+
+const {Link} = Router;
 
 const MySpaces = React.createClass({
 
@@ -64,7 +67,20 @@ const MySpaces = React.createClass({
     };
 
     const spaceTiles = () => {
-      return this.state.spaces.map((space) => {
+      if (!this.state.spaces || !this.state.spaces.length) {
+        return (
+          <div className="content-box">
+            <div className="grid-row center-md">
+              <div className="col-xs-12 col-md-8">
+                <img style={{width: '25%', margin: 'auto'}} src="/images/sadpanda.svg" alt="The panda is sad because it couldn't find the page you wanted" />
+                <p style={{marginTop: '2em'}}>You don't appear to be a member of any Canvas Spaces.</p><p>Why not <Link to="create_space">create a new space</Link> now?</p>
+              </div>
+            </div>
+          </div>
+
+        );
+      }
+      const tiles = this.state.spaces.map((space) => {
         return (
           <SpaceTile
             key={`space_${space.id}`}
@@ -75,15 +91,19 @@ const MySpaces = React.createClass({
           />
         );
       });
+      return (
+        <div className="SpaceList">
+          {tiles}
+        </div>
+      );
+
     };
 
     return (
       <div>
         <CommonHeader />
         <h2>My Canvas Spaces</h2>
-        <div className="SpaceList">
-          {spaceTiles()}
-        </div>
+        {spaceTiles()}
         {load_more_dingus()}
       </div>
     );
