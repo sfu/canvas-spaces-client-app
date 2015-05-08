@@ -21,6 +21,13 @@
     padding: 0;
   }
 
+  .SpaceList {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+  }
 }
 
 @import 'tagsinput';
