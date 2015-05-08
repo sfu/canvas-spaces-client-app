@@ -1,0 +1,19 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "globals": {
+    "__DEV__": true
+  },
+  "rules": {
+    "quotes": [2, "single"],
+    "eol-last": [1],
+    "no-mixed-requires": [0],
+    "no-underscore-dangle": [0],
+    "camelcase": [0],
+    "no-unused-vars": [1]
+  }
+}

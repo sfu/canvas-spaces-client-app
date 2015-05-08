@@ -7,6 +7,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "setup": "script/canvas_setup",
+    "lint": "eslint src/js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -18,9 +19,11 @@
   "author": "Graham Ballantyne <grahamb@sfu.ca>",
   "license": "ISC",
   "devDependencies": {
+    "babel-eslint": "^3.1.1",
     "babel-loader": "^5.0.0",
     "clean-webpack-plugin": "^0.1.2",
     "css-loader": "^0.10.1",
+    "eslint": "^0.20.0",
     "fs-extra": "^0.17.0",
     "glob": "^5.0.3",
     "react-hot-loader": "^1.2.5",
