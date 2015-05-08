@@ -41,9 +41,9 @@ const SpaceTile_Information = React.createClass({
     return (
       <div className="SpaceTile--SpaceInformation">
         <h1>{this.props.name}</h1>
-        {leader_text}
-        {edit_button}
         <h2 title={this.props.description}>{this.props.description}</h2>
+        {edit_button}
+        {leader_text}
       </div>
     );
   }
