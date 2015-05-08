@@ -30,7 +30,6 @@ const parse_link_header = (response) => {
   }, {});
 };
 
-
 const urlbase = '/api/v1/canvasspaces';
 
 const api = {
@@ -65,8 +64,10 @@ const api = {
   },
 
   get_spaces_for_user(user_id, cb, headers = default_headers()) {
+  get_spaces_for_user(user_id, cb, per_page = 10, headers = default_headers()) {
     request
       .get(`${urlbase}/users/self/groups`)
+      .query({ per_page })
       .set(headers)
       .end((err, response) => {
         const {body} = response;
