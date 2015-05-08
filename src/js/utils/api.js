@@ -63,7 +63,6 @@ const api = {
       });
   },
 
-  get_spaces_for_user(user_id, cb, headers = default_headers()) {
   get_spaces_for_user(user_id, cb, per_page = 10, headers = default_headers()) {
     request
       .get(`${urlbase}/users/self/groups`)
@@ -74,7 +73,20 @@ const api = {
         const links = parse_link_header(response);
         cb(body, links);
       });
+  },
+
+  load_url(url, cb, headers = default_headers()) {
+    request
+      .get(url)
+      .set(headers)
+      .end((err, response) => {
+        const {body} = response;
+        const links = parse_link_header(response);
+        cb(body, links);
+      });
   }
+
+
 };
 
 
