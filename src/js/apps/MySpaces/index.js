@@ -10,7 +10,7 @@ const MySpaces = React.createClass({
 
   getInitialState() {
     return {
-      loading: false,
+      loading: true,
       links: null,
       spaces: []
     };
@@ -19,6 +19,7 @@ const MySpaces = React.createClass({
   componentDidMount() {
     api.get_spaces_for_user('self', (spaces, links) => {
       this.setState({
+        loading: false,
         spaces: spaces,
         links: links
       });
@@ -42,20 +43,21 @@ const MySpaces = React.createClass({
 
   render() {
     const load_more_dingus = () => {
-      if (this.state.links && this.state.links.hasOwnProperty('next')) {
-        return (
-          <div className="content-box">
-            <div className="grid-row center-md">
-                <div className="col-xs-12 col-md-1">
-                    <LoadMoreDingus
-                      onClick={this.loadMore}
-                      disabled={this.state.loading}
-                      loading={this.state.loading}
-                    />
-                </div>
+      const dingus = (
+        <div className="content-box">
+          <div className="grid-row center-md">
+            <div className="col-xs-12 col-md-1">
+              <LoadMoreDingus
+                onClick={this.loadMore}
+                disabled={this.state.loading}
+                loading={this.state.loading}
+              />
             </div>
           </div>
-        );
+        </div>
+      );
+      if (this.state.loading || (this.state.links && this.state.links.hasOwnProperty('next'))) {
+        return dingus;
       } else {
         return null;
       }
