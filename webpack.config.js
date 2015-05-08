@@ -15,7 +15,8 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://' + hostname + ':' + port,
     'webpack/hot/only-dev-server',
-    './src/js/index.js',
+    path.join(__dirname, '/node_modules/babel-core/browser-polyfill.js'),
+    './src/js/index.js'
   ],
 
   output: {
@@ -33,9 +34,13 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loader: "style!css!sass"
+        loader: 'style!css!sass'
       }
+    ],
+    noParse: [
+      /\/babel-core\/browser-polyfill\.js$/
     ]
+
   },
 
   plugins: [
@@ -46,7 +51,7 @@ module.exports = {
 
   resolve: {
     extensions: ['', '.js', '.jsx'],
-    root: __dirname + '/src/js'
+    root: path.join(__dirname, '/src/js')
   },
 
   devServer: {
@@ -60,4 +65,4 @@ module.exports = {
       '/images/*': config.get('api_proxy')
     }
   }
-}
+};
