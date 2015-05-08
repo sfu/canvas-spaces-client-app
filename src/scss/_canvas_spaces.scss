@@ -27,6 +27,13 @@
     flex-direction: row;
     flex-wrap: wrap;
     box-sizing: border-box;
+
+    a:hover {
+      text-decoration: none;
+    }
+    a:hover h1 {
+      text-decoration: underline;
+    }
   }
 }
 

@@ -37,6 +37,15 @@
 .SpaceTile--SpaceInformation-leaderNote {
   font-size: .9em;
   font-style: italic;
+  margin: 0;
+}
+
+.SpaceTile--SpaceInformation-editButton {
+  margin: .8em 0;
+  padding-left: .3em;
+  i {
+    margin-right: .125em;
+  }
 }
 
 .SpaceTile--SpaceAvatar {
