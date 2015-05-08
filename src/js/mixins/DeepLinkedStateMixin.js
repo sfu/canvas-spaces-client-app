@@ -1,3 +1,4 @@
+'use strict';
 // From https://github.com/tungd/react-catalyst
 
 function getIn(object, path) {

@@ -3,10 +3,12 @@
   "env": {
     "browser": true,
     "node": true,
-    "es6": true
+    "es6": true,
+    "jquery": true
   },
   "globals": {
-    "__DEV__": true
+    "__DEV__": true,
+    "__CANVAS_API_TOKEN__": true,
   },
   "rules": {
     "quotes": [2, "single"],
@@ -14,6 +16,7 @@
     "no-mixed-requires": [0],
     "no-underscore-dangle": [0],
     "camelcase": [0],
-    "no-unused-vars": [1]
+    "no-unused-vars": [1],
+    "handle-callback-err": [0]
   }
 }

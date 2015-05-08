@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import Router from 'react-router';
 import CreateSpace from 'apps/CreateSpace';
@@ -51,7 +53,7 @@ const routes = (
 );
 
 Router.run(routes, Router.HistoryLocation, (Handler) => {
-  React.render(<Handler/>, document.getElementById('CanvasSpacesApp'))
-})
+  React.render(<Handler/>, document.getElementById('CanvasSpacesApp'));
+});
 
 export default App;

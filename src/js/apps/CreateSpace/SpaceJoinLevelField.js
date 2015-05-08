@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 const {PropTypes} = React;
 import ICRadioButtonGroup from 'FormComponents/ICRadioButtonGroup';
@@ -38,7 +40,7 @@ const SpaceJoinLevelField = React.createClass({
     return props.valueLink || {
       value: props.value,
       requestChange: props.onChange
-    }
+    };
   },
 
   handleChange(event) {

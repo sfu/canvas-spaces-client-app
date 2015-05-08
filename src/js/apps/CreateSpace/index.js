@@ -1,3 +1,6 @@
+/* eslint no-alert:0 */
+'use strict';
+
 import ObjectAssign from 'object-assign';
 
 import React from 'react';
@@ -50,7 +53,7 @@ const CreateSpace = React.createClass({
   },
 
   handleSubmit() {
-    const error_message = 'There was a problem creating your space. Please check the form for errors and try again.'
+    const error_message = 'There was a problem creating your space. Please check the form for errors and try again.';
     if (this.disableSubmit()) {
       this.flashError(error_message);
       return;

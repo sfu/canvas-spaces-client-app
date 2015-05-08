@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 const {PropTypes} = React;
 
@@ -17,7 +19,7 @@ const SpaceTile_Information = React.createClass({
 
     function truncate_description(str) {
       if (str.length < 140) { return str; }
-      return `${str.substr(0,100).trim()}…`;
+      return `${str.substr(0, 100).trim()}…`;
     }
 
     const edit_button = this.props.is_leader ? (

@@ -1,3 +1,5 @@
+'use strict';
+
 const HandleErrorsMixin = {
   setError(error) {
     this.getErrorLink(this.props).requestChange(error);
@@ -15,7 +17,7 @@ const HandleErrorsMixin = {
     return props.errorLink || {
       value: props.value,
       requestChange: this.setError
-    }
+    };
   }
 };
 

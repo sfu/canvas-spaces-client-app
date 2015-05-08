@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import CommonHeader from 'apps/Shared/CommonHeader';
 import SpaceTile from 'apps/Shared/SpaceTile';
@@ -17,14 +19,13 @@ const MySpaces = React.createClass({
       this.setState({
         spaces: spaces,
         links: links
-      })
-    }.bind(this))
+      });
+    }.bind(this));
   },
 
   render() {
     const spaceTiles = () => {
       return this.state.spaces.map((space) => {
-        const leader = space.is_leader ? (<i className="icon-star"></i>) : '';
         return (
           <SpaceTile
             key={`space_${space.id}`}
@@ -35,7 +36,7 @@ const MySpaces = React.createClass({
           />
         );
       });
-    }
+    };
 
     return (
       <div>

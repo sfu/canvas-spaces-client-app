@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react/addons';
 import TagsInput from 'react-tagsinput';
 import api from 'utils/api';

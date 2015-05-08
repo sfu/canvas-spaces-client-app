@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 const {PropTypes} = React;
 
@@ -11,7 +13,6 @@ const ICRadioButton = React.createClass({
     label: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired
   },
-
 
   render() {
     return (

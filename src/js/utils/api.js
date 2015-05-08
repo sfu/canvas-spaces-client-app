@@ -1,3 +1,5 @@
+'use strict';
+
 import request from 'superagent';
 
 const default_headers = () => {
@@ -5,7 +7,7 @@ const default_headers = () => {
     Accept: 'application/json'
   };
   if (__DEV__) {
-    headers['Authorization'] = __CANVAS_API_TOKEN__;
+    headers.Authorization = __CANVAS_API_TOKEN__;
   }
   if (!__DEV__) {
     headers['X-CSRF-Token'] = $.cookie('_csrf_token');
@@ -34,7 +36,7 @@ const urlbase = '/api/v1/canvasspaces';
 const api = {
 
   validate_field(field, value, cb, headers = default_headers()) {
-    const validation_url = `${urlbase}/validate/${field}/${value}`
+    const validation_url = `${urlbase}/validate/${field}/${value}`;
     request
       .get(validation_url)
       .set(headers)
@@ -49,7 +51,7 @@ const api = {
       .set(headers)
       .send(data)
       .end((err, response) => {
-        cb(response)
+        cb(response);
       });
   },
 
@@ -72,7 +74,7 @@ const api = {
         cb(body, links);
       });
   }
-}
+};
 
 
 module.exports = api;

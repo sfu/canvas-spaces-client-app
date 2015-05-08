@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import ICInputField from 'FormComponents/ICInputField';
 import HandleErrorsMixin from 'mixins/HandleErrorsMixin';

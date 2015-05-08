@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 const {PropTypes} = React;
 
@@ -36,7 +38,7 @@ const ICInputField = React.createClass({
               {this.props.error}
           </div>
         </div>
-      )
+      );
     } else {
       return null;
     }

@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 const {PropTypes} = React;
 
@@ -25,7 +27,7 @@ const ICRadioButtonGroup = React.createClass({
       if (radioButtons[i].checked) {
         return radioButtons[i];
       }
-    };
+    }
   },
 
   renderRadioButtons() {

@@ -1,20 +1,20 @@
-import React from 'react';
+'use strict';
 
 const ReactTagsInputhelpersMixin = {
-  focusInput(event) {
+  focusInput() {
     this.refs[Object.keys(this.refs)[0]].getDOMNode().querySelector('input').focus();
   },
 
-  onTagAdd(tag) {
+  onTagAdd() {
     this.getValueLink(this.props).requestChange(this.state.tags);
   },
 
   onTagRemove(tag) {
-    const newtags = this.state.tags.filter(function(a) { return a !== tag });
+    const newtags = this.state.tags.filter(function(a) { return a !== tag; });
     this.getValueLink(this.props).requestChange(newtags);
   },
 
-  onChangeInput(tag) {
+  onChangeInput() {
     this.clearError();
   },
 
@@ -37,7 +37,7 @@ const ReactTagsInputhelpersMixin = {
               {error}
           </div>
         </div>
-      )
+      );
     } else {
       return null;
     }
