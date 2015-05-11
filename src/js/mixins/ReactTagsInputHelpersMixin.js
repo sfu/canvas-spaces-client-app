@@ -1,12 +1,14 @@
 'use strict';
+import React from 'react';
 
 const ReactTagsInputhelpersMixin = {
   focusInput() {
     this.refs[Object.keys(this.refs)[0]].getDOMNode().querySelector('input').focus();
   },
 
-  onTagAdd() {
-    this.getValueLink(this.props).requestChange(this.state.tags);
+  onTagAdd(tag) {
+    var tags = Array.from(this.state.tags);
+    this.getValueLink(this.props).requestChange(tags.concat(tag));
   },
 
   onTagRemove(tag) {
