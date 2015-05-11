@@ -7,11 +7,11 @@ import React from 'react';
 import DeepLinkedStateMixin from 'mixins/DeepLinkedStateMixin';
 
 import api from 'utils/api';
-import SpaceNameField from './SpaceNameField';
-import SpaceDescriptionField from './SpaceDescriptionField';
-import SpaceJoinLevelField from './SpaceJoinLevelField';
-import SpaceInitialUsersField from './SpaceInitialUsersField';
-import SpaceMaillistsField from './SpaceMaillistsField';
+import SpaceNameField from 'Shared/SpaceNameField';
+import SpaceDescriptionField from 'Shared/SpaceDescriptionField';
+import SpaceJoinLevelField from 'Shared/SpaceJoinLevelField';
+import SpaceInitialUsersField from 'Shared/SpaceInitialUsersField';
+import SpaceMaillistsField from 'Shared/SpaceMaillistsField';
 
 const initialErrorState = {
   name: '',
