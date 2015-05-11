@@ -5,16 +5,13 @@ const {PropTypes} = React;
 
 import SpaceTile_Information from './SpaceTile_Information';
 import SpaceTile_Avatar from './SpaceTile_Avatar';
-import SpaceSettingsModal from 'apps/Shared/SpaceSettingsModal';
+import SpaceSettingsModal from 'Shared/SpaceSettingsModal';
 
 const SpaceTile = React.createClass({
 
   propTypes: {
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    is_leader: PropTypes.bool.isRequired,
-    avatar: PropTypes.string,
-    space_id: PropTypes.number.isRequired
+    space: PropTypes.object.isRequired,
+    avatar: PropTypes.string
   },
 
   getInitialState() {
@@ -41,15 +38,15 @@ const SpaceTile = React.createClass({
     if (__DEV__) {
       space_url = `http://canvas.dev${space_url}`;
     }
-
+    const space = this.props.space;
     return (
       <div>
         <a href={space_url}>
           <div className="SpaceTile">
             <SpaceTile_Information
-              name={this.props.name}
-              description={this.props.description}
-              is_leader={this.props.is_leader}
+              name={space.name}
+              description={space.description}
+              is_leader={space.is_leader}
               editButtonHandler={this.openModal}
             />
             <SpaceTile_Avatar
@@ -58,6 +55,7 @@ const SpaceTile = React.createClass({
           </div>
         </a>
         <SpaceSettingsModal
+          space={space}
           className="ReactModal__Content--canvas"
           overlayClassName="ReactModal__Overlay--canvas"
           modalIsOpen={this.state.modalIsOpen}

@@ -2,9 +2,9 @@
 
 import React from 'react';
 import Router from 'react-router';
-import CommonHeader from 'apps/Shared/CommonHeader';
-import SpaceTile from 'apps/Shared/SpaceTile';
-import LoadMoreDingus from 'apps/Shared/LoadMoreDingus';
+import CommonHeader from 'Shared/CommonHeader';
+import SpaceTile from 'Shared/SpaceTile';
+import LoadMoreDingus from 'Shared/LoadMoreDingus';
 import api from 'utils/api';
 
 const {Link} = Router;
