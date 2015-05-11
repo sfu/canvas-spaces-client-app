@@ -24,8 +24,17 @@ const SpaceNameField = React.createClass({
     errorLink: PropTypes.shape({
       value: PropTypes.string.isRequired,
       requestChange: PropTypes.func.isRequired
-    }).isRequired,
-    validate: PropTypes.func
+    }).isRequired
+  },
+
+  getDefaultProps() {
+    return {
+      value: '',
+      error: '',
+      onChange: () => {},
+      valueLink: null,
+      errorLink: null
+    };
   },
 
   handleChange(event) {
@@ -34,7 +43,9 @@ const SpaceNameField = React.createClass({
     this.getValueLink(this.props).requestChange(space_name);
   },
 
-  defaultValidate(space_name) {
+  validate(event) {
+    const space_name = event.target.value.trim();
+
     // no empty names
     if (space_name === '') {
       this.setError('You must enter a name for your Space');
@@ -49,14 +60,7 @@ const SpaceNameField = React.createClass({
     });
   },
 
-  validate(event) {
-    const space_name = event.target.value.trim();
-    const validate = this.props.validate ? this.props.validate : this.defaultValidate;
-    validate(space_name);
-  },
-
   render() {
-    console.log(this.props);
     return (
       <ICInputField
         ref="space_name"
