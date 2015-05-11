@@ -11,10 +11,6 @@ const SpaceTile_Information = React.createClass({
     is_leader: PropTypes.bool.isRequired
   },
 
-  onClick(e) {
-    e.preventDefault();
-  },
-
   render() {
 
     function truncate_description(str) {
@@ -25,7 +21,7 @@ const SpaceTile_Information = React.createClass({
     const edit_button = this.props.is_leader ? (
       <button
         className="SpaceTile--SpaceInformation-editButton Button Button--small"
-        onClick={this.onClick}
+        onClick={this.props.editButtonHandler}
       >
         <i className="icon-settings"></i>
         Change Space Settings
