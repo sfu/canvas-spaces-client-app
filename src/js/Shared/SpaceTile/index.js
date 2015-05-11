@@ -34,7 +34,7 @@ const SpaceTile = React.createClass({
   },
 
   render() {
-    var space_url = `/groups/${this.props.space_id}`;
+    var space_url = `/groups/${this.props.space.id}`;
     if (__DEV__) {
       space_url = `http://canvas.dev${space_url}`;
     }

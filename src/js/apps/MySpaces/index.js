@@ -84,10 +84,7 @@ const MySpaces = React.createClass({
         return (
           <SpaceTile
             key={`space_${space.id}`}
-            name={space.name}
-            description={space.description}
-            is_leader={space.is_leader}
-            space_id={space.id}
+            space={space}
           />
         );
       });
