@@ -1,8 +1,6 @@
 /* eslint no-alert:0 */
 'use strict';
 
-import ObjectAssign from 'object-assign';
-
 import React from 'react';
 import DeepLinkedStateMixin from 'mixins/DeepLinkedStateMixin';
 
