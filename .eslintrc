@@ -6,6 +6,7 @@
     "es6": true,
     "jquery": true
   },
+  "plugins": [ "react" ],
   "globals": {
     "__DEV__": true,
     "__CANVAS_API_TOKEN__": true,
@@ -17,6 +18,7 @@
     "no-underscore-dangle": [0],
     "camelcase": [0],
     "no-unused-vars": [1],
-    "handle-callback-err": [0]
+    "handle-callback-err": [0],
+    "react/jsx-quotes": [2, "double"]
   }
 }
