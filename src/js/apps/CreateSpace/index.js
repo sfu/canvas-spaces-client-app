@@ -121,7 +121,7 @@ const CreateSpace = React.createClass({
           <div className="ic-Form-actions">
             <button
               className="Button Button--primary"
-
+              disabled={this.state.disableSubmit}
               type="submit"
               onClick={this.handleSubmit}
           >
