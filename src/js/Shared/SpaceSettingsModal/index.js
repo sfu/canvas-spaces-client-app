@@ -32,7 +32,7 @@ const SpaceSettingsModal = React.createClass({
 
   getInitialState() {
     return {
-      space: this.props.space,
+      space: Object.assign({}, this.props.space),
       errors: initialErrorState
     };
   },
