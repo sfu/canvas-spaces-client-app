@@ -3,45 +3,34 @@
 import React from 'react';
 import Router from 'react-router';
 import CommonHeader from 'Shared/CommonHeader';
+import SpaceStore from './stores';
+import SpaceActions from './actions';
 import SpaceTile from 'Shared/SpaceTile';
 import LoadMoreDingus from 'Shared/LoadMoreDingus';
-import api from 'utils/api';
 
 const {Link} = Router;
 
 const MySpaces = React.createClass({
 
   getInitialState() {
-    return {
-      loading: true,
-      links: null,
-      spaces: []
-    };
+    return SpaceStore.getState();
   },
 
   componentDidMount() {
-    api.get_spaces_for_user('self', (spaces, links) => {
-      this.setState({
-        loading: false,
-        spaces: spaces,
-        links: links
-      });
-    }.bind(this), 3);
+    SpaceStore.listen(this.onChange);
+    SpaceActions.fetchSpaces();
+  },
+
+  componentWillUnmount() {
+    SpaceStore.unlisten(this.onChange);
+  },
+
+  onChange(state) {
+    this.setState(state);
   },
 
   loadMore() {
-    this.setState({loading: true}, () => {
-      const next_link = this.state.links.next;
-        api.load_url(next_link, (spaces, links) => {
-          var spaces_array = Array.from(this.state.spaces);
-          spaces.forEach((space) => { spaces_array.push(space); });
-          this.setState({
-            loading: false,
-            links: links,
-            spaces: spaces_array
-          });
-        });
-    });
+    SpaceActions.fetchSpaces(this.state.links.next);
   },
 
   render() {
@@ -67,7 +56,7 @@ const MySpaces = React.createClass({
     };
 
     const spaceTiles = () => {
-      if (this.state.spaces.length ===0 && !this.state.loading) {
+      if (this.state.spaces.length === 0 && !this.state.loading) {
         return (
           <div className="content-box">
             <div className="grid-row center-md">
@@ -85,6 +74,7 @@ const MySpaces = React.createClass({
           <SpaceTile
             key={`space_${space.id}`}
             space={space}
+            avatar={space.avatar_url}
           />
         );
       });
