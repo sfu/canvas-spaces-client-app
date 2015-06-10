@@ -8,12 +8,6 @@ const SpaceTile_Avatar = React.createClass({
     avatar: PropTypes.string.isRequired
   },
 
-  getDefaultProps() {
-    return {
-      avatar: 'http://www.ilikewallpaper.net/ipad-wallpapers/download/2268/Square-Pattern-ipad-wallpaper-ilikewallpaper_com.jpg'
-    };
-  },
-
   render() {
     return (
       <div className="SpaceTile--SpaceAvatar">
