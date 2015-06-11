@@ -77,6 +77,15 @@ const CreateSpace = React.createClass({
 
   },
 
+  validateSpaceName(space_name, cb) {
+    // // validate name against api
+    api.validate_field('name', space_name, (result) => {
+      if (!result.valid_group_name) {
+        cb(result.message);
+      }
+    });
+  },
+
   render() {
     return (
       <div>
@@ -88,6 +97,7 @@ const CreateSpace = React.createClass({
             <SpaceNameField
               valueLink={this.linkState('space.name')}
               errorLink={this.linkState('errors.name')}
+              validate={this.validateSpaceName}
             />
 
             <SpaceDescriptionField

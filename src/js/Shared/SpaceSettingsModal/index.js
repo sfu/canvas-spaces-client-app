@@ -3,6 +3,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import DeepLinkedStateMixin from 'mixins/DeepLinkedStateMixin';
+import api from 'utils/api';
 import SpaceNameField from 'Shared/SpaceNameField';
 import SpaceDescriptionField from 'Shared/SpaceDescriptionField';
 // import SpaceJoinLevelField from 'Shared/SpaceJoinLevelField';
@@ -53,8 +54,14 @@ const SpaceSettingsModal = React.createClass({
     });
   },
 
-  validateSpaceName(space_name) {
-    this.setError('WHARRRGARBL');
+  validateSpaceName(space_name, cb) {
+    // // validate name against api
+    if (this.state.original_space.name === space_name) { return; }
+    api.validate_field('name', space_name, (result) => {
+      if (!result.valid_group_name) {
+        cb(result.message);
+      }
+    });
   },
 
   render() {
@@ -85,7 +92,6 @@ const SpaceSettingsModal = React.createClass({
                 <legend>Name and Description</legend>
                 <SpaceNameField
                   validate={this.validateSpaceName}
-                  foo="bar"
                   valueLink={this.linkState('space.name')}
                   errorLink={this.linkState('errors.name')}
                 />

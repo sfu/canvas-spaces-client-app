@@ -2,7 +2,6 @@
 
 import React from 'react';
 import ICInputField from 'FormComponents/ICInputField';
-import api from 'utils/api';
 import HandleErrorsMixin from 'mixins/HandleErrorsMixin';
 import GetValueLinkMixin from 'mixins/GetValueLinkMixin';
 
@@ -17,6 +16,7 @@ const SpaceNameField = React.createClass({
   propTypes: {
     value: PropTypes.string,
     onChange: PropTypes.func,
+    validate: PropTypes.func,
     valueLink: PropTypes.shape({
       value: PropTypes.string.isRequired,
       requestChange: PropTypes.func.isRequired
@@ -33,7 +33,8 @@ const SpaceNameField = React.createClass({
       error: '',
       onChange: () => {},
       valueLink: null,
-      errorLink: null
+      errorLink: null,
+      validate: () => {}
     };
   },
 
@@ -52,10 +53,9 @@ const SpaceNameField = React.createClass({
       return;
     }
 
-    // validate name against api
-    api.validate_field('name', space_name, (result) => {
-      if (!result.valid_group_name) {
-        this.setError(result.message);
+    this.props.validate(space_name, (err) => {
+      if (err) {
+        this.setError(err);
       }
     });
   },
