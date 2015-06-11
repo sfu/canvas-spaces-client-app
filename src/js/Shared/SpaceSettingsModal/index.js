@@ -5,9 +5,10 @@ import Modal from 'react-modal';
 import DeepLinkedStateMixin from 'mixins/DeepLinkedStateMixin';
 import SpaceNameField from 'Shared/SpaceNameField';
 import SpaceDescriptionField from 'Shared/SpaceDescriptionField';
-import SpaceJoinLevelField from 'Shared/SpaceJoinLevelField';
-import SpaceInitialUsersField from 'Shared/SpaceInitialUsersField';
-import SpaceMaillistsField from 'Shared/SpaceMaillistsField';
+// import SpaceJoinLevelField from 'Shared/SpaceJoinLevelField';
+// import SpaceInitialUsersField from 'Shared/SpaceInitialUsersField';
+// import SpaceMaillistsField from 'Shared/SpaceMaillistsField';
+import SpaceActions from '../../apps/MySpaces/actions';
 
 const initialErrorState = {
   name: '',
@@ -41,6 +42,14 @@ const SpaceSettingsModal = React.createClass({
     this.setState({
       space: Object.assign({}, nextProps.space),
       errors: initialErrorState
+    });
+  },
+
+  handleSubmit() {
+    // do the validations and whatnot, and if everything is all good, pass it up the chain
+    // ...validate...
+    SpaceActions.updateSpace(this.state.space, () => {
+      this.props.onRequestClose();
     });
   },
 
