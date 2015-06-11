@@ -37,6 +37,13 @@ const SpaceSettingsModal = React.createClass({
     };
   },
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      space: Object.assign({}, nextProps.space),
+      errors: initialErrorState
+    });
+  },
+
   validateSpaceName(space_name) {
     this.setError('WHARRRGARBL');
   },
