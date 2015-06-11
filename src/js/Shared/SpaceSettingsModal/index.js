@@ -47,6 +47,13 @@ const SpaceSettingsModal = React.createClass({
     });
   },
 
+  disableSubmit() {
+    if (this.state.space.name === '' || this.state.space.description === '') { return true; }
+    if (JSON.stringify(initialErrorState) !== JSON.stringify(this.state.errors)) { return true; }
+    return false;
+  },
+
+
   handleSubmit() {
     // do the validations and whatnot, and if everything is all good, pass it up the chain
     // ...validate...
@@ -108,8 +115,21 @@ const SpaceSettingsModal = React.createClass({
 
           <div className="ReactModal__InnerSection ReactModal__Footer">
             <div className="ReactModal__Footer-Actions">
-              <button type="button" className="btn btn-default" onClick={this.props.onRequestClose}>Cancel</button>
-              <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Submit</button>
+              <button
+                type="button"
+                className="btn btn-default"
+                onClick={this.props.onRequestClose}
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={this.handleSubmit}
+                disabled={this.disableSubmit()}
+                >
+                Submit
+              </button>
             </div>
           </div>
 
