@@ -63,6 +63,20 @@ const api = {
       });
   },
 
+  update_space(data, cb, headers = default_headers()) {
+    request
+      .put(`${urlbase}/groups/${data.id}`)
+      .set(headers)
+      .send(data)
+      .end((err, response) => {
+        if (err) {
+          cb(err.response.body, response.body);
+        } else {
+          cb(null, response.body);
+        }
+      });
+  },
+
   get_spaces_for_user(user_id, cb, per_page = 10, headers = default_headers()) {
     request
       .get(`${urlbase}/users/self/groups`)
