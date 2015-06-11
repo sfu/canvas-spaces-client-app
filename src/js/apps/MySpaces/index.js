@@ -7,6 +7,7 @@ import SpaceStore from './stores';
 import SpaceActions from './actions';
 import SpaceTile from 'Shared/SpaceTile';
 import LoadMoreDingus from 'Shared/LoadMoreDingus';
+import ErrorBox from 'Shared/ErrorBox';
 
 const {Link} = Router;
 
@@ -90,6 +91,7 @@ const MySpaces = React.createClass({
       <div>
         <CommonHeader />
         <h2>My Canvas Spaces</h2>
+        <ErrorBox error={this.state.error} />
         {spaceTiles()}
         {load_more_dingus()}
       </div>
