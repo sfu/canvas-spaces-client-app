@@ -21,6 +21,7 @@ class SpaceStore {
 
     this.bindListeners({
       handleUpdateSpaces: SpaceActions.UPDATE_SPACES,
+      handleUpdateSpace: SpaceActions.UPDATE_SPACE,
       handleFetchSpaces: SpaceActions.FETCH_SPACES,
       handleSpacesFailed: SpaceActions.SPACES_FAILED
     });
