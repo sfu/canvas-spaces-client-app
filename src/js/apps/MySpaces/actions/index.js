@@ -15,7 +15,7 @@ class SpaceActions {
       // initial load
       api.get_spaces_for_user('self', (spaces, links) => {
         this.actions.updateSpaces(spaces, links);
-      }, 3);
+      });
     } else {
       // load next pages
       api.load_url(next_link, (spaces, links) => {
