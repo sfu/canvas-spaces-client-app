@@ -37,6 +37,15 @@ class SpaceStore {
     this.links = payload.links;
   }
 
+  handleUpdateSpace(payload) {
+    // find the space in this.spaces, and replace it?
+    const index = this.spaces.findIndex(function(e) { return e.id === payload.id; });
+    if (!payload.avatar_url) {
+      payload.avatar_url = defaultAvatars.next();
+    }
+    this.spaces[index] = payload;
+  }
+
   handleFetchSpaces() {
     this.loading = true;
   }
