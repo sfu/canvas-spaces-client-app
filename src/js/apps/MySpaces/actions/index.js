@@ -26,6 +26,19 @@ class SpaceActions {
 
   spacesFailed(errorMessage) {
     this.dispatch(errorMessage);
+  updateSpace(space, cb) {
+    api.update_space(space, (err, newspace) => {
+      if (err) {
+        this.actions.spacesFailed(err);
+      } else {
+        this.dispatch(newspace);
+      }
+      if (cb) {
+        cb();
+      }
+    });
+  }
+
   }
 }
 
