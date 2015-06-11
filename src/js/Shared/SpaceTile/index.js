@@ -55,7 +55,7 @@ const SpaceTile = React.createClass({
           </div>
         </a>
         <SpaceSettingsModal
-          space={space}
+          space={this.props.space}
           className="ReactModal__Content--canvas"
           overlayClassName="ReactModal__Overlay--canvas"
           modalIsOpen={this.state.modalIsOpen}
