@@ -7,11 +7,17 @@ import DefaultAvatars from 'Shared/DefaultAvatars';
 
 let defaultAvatars = new DefaultAvatars();
 
+const errors = {
+  default: 'An unknown error occured while trying to save your changes. Please try again later.',
+  unauthorized: 'You are not authoized to modify this Space. Only the Space Leader can make changes.'
+};
+
 class SpaceStore {
   constructor() {
     this.spaces = [];
     this.links = [];
     this.loading = false;
+    this.error = null;
 
     this.bindListeners({
       handleUpdateSpaces: SpaceActions.UPDATE_SPACES,
@@ -35,8 +41,12 @@ class SpaceStore {
     this.loading = true;
   }
 
-  handleSpacesFailed(errorMessage) {
-    console.log(errorMessage);
+  handleSpacesFailed(error) {
+    const errorKey = error.status;
+    this.error = errors.hasOwnProperty(errorKey) ? errors[errorKey] : errors.default;
+    window.setTimeout(() => {
+      this.setState({ error: null });
+    }.bind(this), 5000);
   }
 }
 
