@@ -64,6 +64,7 @@ const api = {
   },
 
   update_space(data, cb, headers = default_headers()) {
+    delete data.avatar_url;
     request
       .put(`${urlbase}/groups/${data.id}`)
       .set(headers)
