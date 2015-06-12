@@ -8,15 +8,13 @@ import api from 'utils/api';
 import SpaceNameField from 'Shared/SpaceNameField';
 import SpaceDescriptionField from 'Shared/SpaceDescriptionField';
 import SpaceJoinLevelField from 'Shared/SpaceJoinLevelField';
-import SpaceInitialUsersField from 'Shared/SpaceInitialUsersField';
-import SpaceMaillistsField from 'Shared/SpaceMaillistsField';
+import SpaceMaillistField from 'Shared/SpaceMaillistField';
 
 const initialErrorState = {
   name: '',
   description: '',
   join_type: '',
-  members: '',
-  maillists: ''
+  maillist: ''
 };
 
 
@@ -29,8 +27,7 @@ const CreateSpace = React.createClass({
         name: '',
         description: '',
         join_type: 'invite_only',
-        members: [],
-        maillists: []
+        maillist: ''
       },
       errors: initialErrorState
     };
@@ -86,6 +83,14 @@ const CreateSpace = React.createClass({
     });
   },
 
+  validateMaillist(maillist, cb) {
+    api.validate_field('maillist', maillist, (result) => {
+      if (!result.valid_maillist) {
+        cb(`${maillist} is not a valid SFU Maillist`);
+      }
+    });
+  },
+
   render() {
     return (
       <div>
@@ -116,15 +121,14 @@ const CreateSpace = React.createClass({
           </fieldset>
 
           <fieldset>
-            <legend>Space Membership</legend>
-            <SpaceInitialUsersField
-              valueLink={this.linkState('space.members')}
-              errorLink={this.linkState('errors.members')}
-            />
+          <p>You can use a <a href="http://maillist.sfu.ca" target="_blank">SFU Maillist</a> to control who can access your Space. If you don't have a list set up already, you can add one later.</p>
 
-            <SpaceMaillistsField
-              valueLink={this.linkState('space.maillists')}
-              errorLink={this.linkState('errors.maillists')}
+            <legend>Space Membership</legend>
+
+            <SpaceMaillistField
+              valueLink={this.linkState('space.maillist')}
+              errorLink={this.linkState('errors.maillist')}
+              validate={this.validateMaillist}
             />
           </fieldset>
 
