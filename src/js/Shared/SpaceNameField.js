@@ -14,7 +14,6 @@ const SpaceNameField = React.createClass({
   ],
 
   propTypes: {
-    value: PropTypes.string,
     onChange: PropTypes.func,
     validate: PropTypes.func,
     valueLink: PropTypes.shape({
