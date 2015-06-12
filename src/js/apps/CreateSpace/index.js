@@ -29,7 +29,7 @@ const CreateSpace = React.createClass({
         join_type: 'invite_only',
         maillist: ''
       },
-      errors: initialErrorState
+      errors: Object.assign({}, initialErrorState)
     };
   },
 
