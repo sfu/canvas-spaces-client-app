@@ -6,9 +6,9 @@ import DeepLinkedStateMixin from 'mixins/DeepLinkedStateMixin';
 import api from 'utils/api';
 import SpaceNameField from 'Shared/SpaceNameField';
 import SpaceDescriptionField from 'Shared/SpaceDescriptionField';
-// import SpaceJoinLevelField from 'Shared/SpaceJoinLevelField';
-// import SpaceInitialUsersField from 'Shared/SpaceInitialUsersField';
-// import SpaceMaillistsField from 'Shared/SpaceMaillistsField';
+import SpaceJoinLevelField from 'Shared/SpaceJoinLevelField';
+import SpaceMaillistField from 'Shared/SpaceMaillistField';
+import SpaceLeaderField from 'Shared/SpaceLeaderField';
 import SpaceActions from '../../apps/MySpaces/actions';
 
 const initialErrorState = {
@@ -16,7 +16,8 @@ const initialErrorState = {
   description: '',
   join_type: '',
   members: '',
-  maillists: ''
+  maillists: '',
+  leader_id: ''
 };
 const {PropTypes} = React;
 
@@ -72,6 +73,15 @@ const SpaceSettingsModal = React.createClass({
     });
   },
 
+  validateMaillist(maillist, cb) {
+    api.validate_field('maillist', maillist, (result) => {
+      if (!result.valid_maillist) {
+        cb(`${maillist} is not a valid SFU Maillist`);
+      }
+    });
+  },
+
+
   render() {
     return (
       <Modal isOpen={this.props.modalIsOpen}
@@ -107,6 +117,37 @@ const SpaceSettingsModal = React.createClass({
                 <SpaceDescriptionField
                   valueLink={this.linkState('space.description')}
                   errorLink={this.linkState('errors.description')}
+                />
+              </fieldset>
+
+              <fieldset>
+                <legend>Space Membership</legend>
+
+                <SpaceMaillistField
+                  valueLink={this.linkState('space.maillist')}
+                  errorLink={this.linkState('errors.maillist')}
+                  validate={this.validateMaillist}
+                />
+              </fieldset>
+
+              <fieldset>
+                <legend>Space Leader</legend>
+                <p>The Space Leader is the administrator of a Space. Only the Space Leader can modify a Space's settings. There can be only one Space Leader at a time.</p>
+                <p><strong>If you reassign leadership of this Space to another member, you will no longer be able to modify this Space's settings.</strong></p>
+                <SpaceLeaderField
+                  valueLink={this.linkState('space.leader_id')}
+                  errorLink={this.linkState('errors.leader_id')}
+                  current={this.state.space.leader_id}
+                  users={this.state.space.users}
+                />
+              </fieldset>
+
+              <fieldset>
+                <legend>Privacy Options</legend>
+
+                <SpaceJoinLevelField
+                  checked={this.state.space.join_type}
+                  valueLink={this.linkState('space.join_type')}
                 />
               </fieldset>
 
