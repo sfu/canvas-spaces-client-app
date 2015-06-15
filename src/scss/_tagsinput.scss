@@ -14,7 +14,7 @@
 
 .SFU-tagsinput-tag {
   display: block;
-  background: $canvas-success;
+  background: $ic-color-success;
   color: #fff;
   font-size: 14px;
   font-family: 'Helvetica Neue', 'Arial', sans-serif;
@@ -23,7 +23,7 @@
   margin-right: 5px;
   text-decoration: none;
   border-radius: 2px;
-  border: 1px solid $canvas-success;
+  border: 1px solid $ic-color-success;
   span {
     padding: 5px;
   }
@@ -68,7 +68,7 @@ input.SFU-tagsinput-input {
   border-style: solid;
   outline-color: transparent;
   outline-offset: -$ic-sp;
-  background: $canvas-light;
+  background: $ic-color-light;
   padding: 8px 12px;
   -webkit-appearance: none;
 
@@ -86,7 +86,7 @@ input.SFU-tagsinput-input {
     @if $use_high_contrast {
       outline-width: 1px;
       outline-offset: -3px;
-      outline-color: $canvas-dark;
+      outline-color: $ic-color-dark;
     }
     @else {
       outline-width: 2px;
