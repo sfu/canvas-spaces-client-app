@@ -1,6 +1,7 @@
 'use strict';
 
 import request from 'superagent';
+import cookie from 'cookies-js';
 
 const default_headers = () => {
   var headers = {
@@ -10,7 +11,7 @@ const default_headers = () => {
     headers.Authorization = __CANVAS_API_TOKEN__;
   }
   if (!__DEV__) {
-    headers['X-CSRF-Token'] = $.cookie('_csrf_token');
+    headers['X-CSRF-Token'] = cookie.get('_csrf_token');
   }
   return headers;
 };
