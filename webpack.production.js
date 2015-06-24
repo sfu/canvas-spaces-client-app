@@ -1,13 +1,16 @@
 var webpack = require('webpack');
 var path = require('path');
-var Clean = require("clean-webpack-plugin");
+var Clean = require('clean-webpack-plugin');
 
 var pragmas = new webpack.DefinePlugin({
   __DEV__: 'false'
 });
 
 module.exports = {
-  entry: './src/js/index.js',
+  entry: [
+    path.join(__dirname, '/node_modules/babel-core/browser-polyfill.js'),
+    './src/js/index.js'
+  ],
 
   output: {
     filename: 'canvas_spaces.js',
@@ -34,9 +37,6 @@ module.exports = {
 
   resolve: {
     extensions: ['', '.js', '.jsx'],
-    root: __dirname + '/src/js',
-    alias: {
-      'FormComponents': __dirname + '/src/js/FormComponents'
-    }
+    root: path.join(__dirname, '/src/js')
   }
-}
+};
