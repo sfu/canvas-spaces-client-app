@@ -19,11 +19,11 @@
   "author": "Graham Ballantyne <grahamb@sfu.ca>",
   "license": "ISC",
   "devDependencies": {
-    "babel-eslint": "^3.1.1",
+    "babel-eslint": "^3.1.18",
     "babel-loader": "^5.0.0",
     "clean-webpack-plugin": "^0.1.2",
     "css-loader": "^0.10.1",
-    "eslint": "^0.20.0",
+    "eslint": "^0.23.0",
     "eslint-plugin-react": "^2.2.0",
     "fs-extra": "^0.17.0",
     "glob": "^5.0.3",
