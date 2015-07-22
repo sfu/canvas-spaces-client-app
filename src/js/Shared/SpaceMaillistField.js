@@ -46,6 +46,8 @@ const SpaceMaillistField = React.createClass({
   validate(event) {
     const maillist = event.target.value.trim().replace('@sfu.ca', '');
 
+    if (!maillist || maillist === '') { return; }
+
     this.props.validate(maillist, (err) => {
       if (err) {
         this.setError(err);
