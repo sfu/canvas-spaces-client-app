@@ -63,7 +63,7 @@ const MySpaces = React.createClass({
             <div className="grid-row center-md">
               <div className="col-xs-12 col-md-8">
                 <img style={{width: '25%', margin: 'auto'}} src="/images/sadpanda.svg" alt="The panda is sad because it couldn't find the page you wanted" />
-                <p style={{marginTop: '2em'}}>You don't appear to be a member of any Canvas Spaces.</p><p>Why not <Link to="create_space">create a new space</Link> now?</p>
+                <p style={{marginTop: '2em'}}>You don't appear to be a member of any Canvas Spaces.</p><p>Why not <Link to="create">create a new space</Link> now?</p>
               </div>
             </div>
           </div>

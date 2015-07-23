@@ -6,7 +6,7 @@ import CreateSpace from 'apps/CreateSpace';
 import MySpaces from 'apps/MySpaces';
 import SpaceDirectory from 'apps/SpaceDirectory';
 
-const { Route, NotFoundRoute, DefaultRoute, Link, RouteHandler } = Router;
+const { Route, NotFoundRoute, DefaultRoute, RouteHandler } = Router;
 
 if (__DEV__) {
   require('../scss/dev.scss');
@@ -44,9 +44,9 @@ const NotFound = React.createClass({
 const route_base_path = __DEV__ ? '/' : '/canvasspaces';
 const routes = (
   <Route name="app" path={route_base_path} handler={App}>
-    <Route name="create_space" handler={CreateSpace} />
-    <Route name="my_spaces" handler={MySpaces} />
-    <Route name="space_directory" handler={SpaceDirectory} />
+    <Route name="create" handler={CreateSpace} />
+    <Route name="mine" handler={MySpaces} />
+    <Route name="public" handler={SpaceDirectory} />
     <DefaultRoute handler={MySpaces} />
     <NotFoundRoute handler={NotFound}/>
   </Route>

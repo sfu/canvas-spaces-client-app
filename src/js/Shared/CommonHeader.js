@@ -14,7 +14,7 @@ const CommonHeader = React.createClass({
           <p>Pop-up Austin gastropub Schlitz, health goth Bushwick mixtape semiotics you probably haven't heard of them four loko whatever. Cornhole single-origin coffee listicle, semiotics Carles meditation Kickstarter DIY food truck street art hella Echo Park Schlitz try-hard cliche. Actually readymade crucifix banh mi deep v gluten-free.</p>
         </div>
         <div className="span4 align-right">
-          <Link to="create_space" className="icon-plus Button Button--primary"> Create New Space</Link>
+          <Link to="create" className="icon-plus Button Button--primary"> Create New Space</Link>
         </div>
       </div>
     );
