@@ -92,6 +92,20 @@ const CreateSpace = React.createClass({
   },
 
   render() {
+
+    const join_type_field = () => {
+      return this.props.serverConfig.public_spaces_enabled === 'yes' ? (
+        <fieldset>
+          <legend>Privacy Options</legend>
+
+          <SpaceJoinLevelField
+            checked={this.state.space.join_type}
+            valueLink={this.linkState('space.join_type')}
+          />
+        </fieldset>
+      ) : '';
+    };
+
     return (
       <div>
         <h2>Create New Space</h2>
@@ -111,14 +125,7 @@ const CreateSpace = React.createClass({
             />
           </fieldset>
 
-          <fieldset>
-            <legend>Privacy Options</legend>
-
-            <SpaceJoinLevelField
-              checked={this.state.space.join_type}
-              valueLink={this.linkState('space.join_type')}
-            />
-          </fieldset>
+          {join_type_field()}
 
           <fieldset>
           <p>You can use a <a href="http://maillist.sfu.ca" target="_blank">SFU Maillist</a> to control who can access your Space. If you don't have a list set up already, you can add one later.</p>
