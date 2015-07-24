@@ -18,15 +18,19 @@ const SpaceTile_Information = React.createClass({
       return `${str.substr(0, 100).trim()}…`;
     }
 
-    const edit_button = this.props.is_leader ? (
-      <button
-        className="SpaceTile--SpaceInformation-editButton Button Button--small"
-        onClick={this.props.editButtonHandler}
-      >
-        <i className="icon-settings"></i>
-        Change Space Settings
-      </button>
-    ) : '';
+    const button = (icon, title, handler) => {
+      return (
+        <button
+          className="SpaceTile--SpaceInformation-editButton Button Button--small"
+          onClick={handler}
+        >
+          <i className={icon}></i>
+          {title}
+        </button>
+      );
+    };
+
+    const edit_button = this.props.is_leader ? button('icon-settings', 'Change Space Settings', this.props.editButtonHandler) : '';
 
     const leader_text = this.props.is_leader ? (
       <p className="SpaceTile--SpaceInformation-leaderNote">
