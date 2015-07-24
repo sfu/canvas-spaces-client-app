@@ -128,7 +128,11 @@ const CreateSpace = React.createClass({
           {join_type_field()}
 
           <fieldset>
-          <p>You can use a <a href="http://maillist.sfu.ca" target="_blank">SFU Maillist</a> to control who can access your Space. If you don't have a list set up already, you can add one later.</p>
+            <p>
+              You can use a <a href="http://maillist.sfu.ca" target="_blank">SFU Maillist</a> to control who can access your Space.
+              If you don't have a list set up already, you can add one later. <br />
+              If you don't add a maillist, you will be the only member of your Space.
+            </p>
 
             <legend>Space Membership</legend>
 
