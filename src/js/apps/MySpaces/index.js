@@ -76,6 +76,7 @@ const MySpaces = React.createClass({
             key={`space_${space.id}`}
             space={space}
             avatar={space.avatar_url}
+            context="mine"
           />
         );
       });

@@ -11,7 +11,8 @@ const SpaceTile = React.createClass({
 
   propTypes: {
     space: PropTypes.object.isRequired,
-    avatar: PropTypes.string
+    avatar: PropTypes.string,
+    context: PropTypes.string.isRequired
   },
 
   getInitialState() {
