@@ -7,6 +7,7 @@ import MySpaces from 'apps/MySpaces';
 import SpaceDirectory from 'apps/SpaceDirectory';
 
 const { Route, NotFoundRoute, DefaultRoute, RouteHandler } = Router;
+const canvas_spaces_config = window.ENV.CANVAS_SPACES || {};
 
 if (__DEV__) {
   require('../scss/dev.scss');
@@ -15,7 +16,7 @@ if (__DEV__) {
 const App = React.createClass({
   render() {
     return (
-      <RouteHandler />
+      <RouteHandler serverConfig={canvas_spaces_config} />
     );
   }
 });
@@ -53,7 +54,7 @@ const routes = (
 );
 
 Router.run(routes, Router.HistoryLocation, (Handler) => {
-  React.render(<Handler/>, document.getElementById('CanvasSpacesApp'));
+  React.render(<Handler />, document.getElementById('CanvasSpacesApp'));
 });
 
 export default App;
