@@ -106,6 +106,16 @@ const CreateSpace = React.createClass({
       ) : '';
     };
 
+    const maillist_help_text = () => {
+      if (this.state.space.join_type === 'invite_only') {
+        return (<p>The membership of your Space will be updated when the membership
+          of the maillist changes. Only SFU members of the maillist will be synchronized
+          with the Space.</p>);
+      } else {
+        return (<p>There will be a one-time sync of the SFU members of the maillist with the Space.</p>);
+      }
+    };
+
     return (
       <div>
         <h2>Create New Space</h2>
@@ -141,6 +151,7 @@ const CreateSpace = React.createClass({
               errorLink={this.linkState('errors.maillist')}
               validate={this.validateMaillist}
             />
+            {maillist_help_text()}
           </fieldset>
 
           <div className="ic-Form-actions">
