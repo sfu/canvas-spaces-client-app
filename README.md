@@ -65,7 +65,7 @@ config.vm.synced_folder "../canvas_spaces_client_app", "/vagrant/client_apps/can
 
 * Follow the installation steps in the [canvas_spaces readme](https://github.com/sfu/canvas_spaces#installation). Restart apache (`sudo service apache2 restart`).
 
-* Verify that you can hit `http://canvas.dev/canvasspaces` without any errors in the browser console or in the Canvas logs.
+* Verify that you can hit `http://canvas.dev/canvas_spaces` without any errors in the browser console or in the Canvas logs.
 
 * Create some SFU users in your Canvas installation to test with. You'll need to use real SFU IDs for the `sis_id`. Pick some LCP people and use them; don't use actual students.
 

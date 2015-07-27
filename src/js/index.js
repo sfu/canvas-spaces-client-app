@@ -42,7 +42,7 @@ const NotFound = React.createClass({
   }
 });
 
-const route_base_path = __DEV__ ? '/' : '/canvasspaces';
+const route_base_path = __DEV__ ? '/' : '/canvas_spaces';
 const routes = (
   <Route name="app" path={route_base_path} handler={App}>
     <Route name="create" handler={CreateSpace} />

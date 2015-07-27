@@ -31,7 +31,7 @@ const parse_link_header = (response) => {
   }, {});
 };
 
-const urlbase = '/api/v1/canvasspaces';
+const urlbase = '/api/v1/canvas_spaces';
 
 const api = {
 
