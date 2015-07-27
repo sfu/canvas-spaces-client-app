@@ -116,6 +116,17 @@ const CreateSpace = React.createClass({
       }
     };
 
+    const debug = () => {
+        return __DEV__ ? (
+          <fieldset>
+            <legend>Debug</legend>
+            <pre>
+              {JSON.stringify(this.state, null, 2)}
+            </pre>
+          </fieldset>
+        ) : '';
+    };
+
     return (
       <div>
         <h2>Create New Space</h2>
@@ -165,13 +176,7 @@ const CreateSpace = React.createClass({
           </button>
           </div>
 
-          <fieldset>
-            <legend>Debug</legend>
-            <pre>
-              {JSON.stringify(this.state, null, 2)}
-            </pre>
-          </fieldset>
-
+          {debug()}
 
         </div>
       </div>
