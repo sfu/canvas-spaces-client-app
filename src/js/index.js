@@ -7,7 +7,7 @@ import MySpaces from 'apps/MySpaces';
 import SpaceDirectory from 'apps/SpaceDirectory';
 
 const { Route, NotFoundRoute, DefaultRoute, RouteHandler } = Router;
-const canvas_spaces_config = window.ENV.CANVAS_SPACES || {};
+const canvas_spaces_config = window.ENV.CANVAS_SPACES_CONFIG || {};
 
 if (__DEV__) {
   require('../scss/dev.scss');
