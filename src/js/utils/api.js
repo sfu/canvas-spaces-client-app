@@ -85,10 +85,10 @@ const api = {
       .set(headers)
       .send(data)
       .end((err, response) => {
-        // do something
+        cb(err, response);
       });
   },
-  
+
   get_spaces_for_user(user_id, cb, per_page = 10, headers = default_headers()) {
     request
       .get(`${urlbase}/users/self/groups`)
