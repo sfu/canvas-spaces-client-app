@@ -61,6 +61,7 @@ const SpaceTile = React.createClass({
           overlayClassName="ReactModal__Overlay--canvas"
           modalIsOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
+          serverConfig={this.props.serverConfig}
         />
       </div>
     );

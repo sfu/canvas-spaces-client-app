@@ -77,6 +77,7 @@ const MySpaces = React.createClass({
             space={space}
             avatar={space.avatar_url}
             context="mine"
+            serverConfig={this.props.serverConfig}
           />
         );
       });
