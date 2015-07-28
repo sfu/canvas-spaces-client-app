@@ -37,14 +37,24 @@ const SpaceSettingsModal = React.createClass({
     return {
       space: Object.assign({}, this.props.space),
       original_space: Object.assign({}, this.props.space),
-      errors: Object.assign({}, initialErrorState)
+      errors: Object.assign({}, initialErrorState),
+      delete_button: {
+        show_field: false,
+        deletable: false,
+        disabled: false
+      }
     };
   },
 
   componentWillReceiveProps(nextProps) {
     this.setState({
       space: Object.assign({}, nextProps.space),
-      errors: Object.assign({}, initialErrorState)
+      errors: Object.assign({}, initialErrorState),
+      delete_button: {
+        show_field: false,
+        deletable: false,
+        disabled: false
+      }
     });
   },
 
@@ -63,11 +73,21 @@ const SpaceSettingsModal = React.createClass({
   },
 
   deleteSpace() {
-    const del = window.confirm(`Are you sure you want to delete "${this.state.space.name}"?`);
-    if (del) {
-      SpaceActions.deleteSpace(this.state.space, () => {
-        console.log('done?');
+    if (!this.state.delete_button.show_field) {
+      this.setState({
+        delete_button: {
+          show_field: true,
+          deletable: false,
+          disabled: true
+        }
       });
+      return;
+    }
+  
+    if (this.state.delete_button.deletable) {
+        SpaceActions.deleteSpace(this.state.space, () => {
+          console.log('done?');
+        });
     }
   },
 
@@ -89,6 +109,27 @@ const SpaceSettingsModal = React.createClass({
     });
   },
 
+  validateDeleteSpace(ev) {
+    let delete_state;
+    if (ev.target.value === this.state.space.name) {
+      delete_state = {
+        delete_button: {
+          show_field: true,
+          deletable: true,
+          disabled: false
+        }
+      };
+    } else {
+      delete_state = {
+        delete_button: {
+          show_field: true,
+          deletable: false,
+          disabled: true
+        }
+      };
+    }
+    this.setState(delete_state);
+  },
 
   render() {
     const join_type_field = () => {
@@ -101,6 +142,20 @@ const SpaceSettingsModal = React.createClass({
             valueLink={this.linkState('space.join_type')}
           />
         </fieldset>
+      ) : '';
+    };
+
+    const delete_space_field = () => {
+      return this.state.delete_button.show_field ? (
+        <div style={{textAlign: 'center'}}>
+          <input
+            type="text"
+            className="ic-Input"
+            style={{marginBottom: '1em'}}
+            placeholder="Type the name of your space to confirm deletion"
+            onChange={this.validateDeleteSpace}
+          />
+        </div>
       ) : '';
     };
 
@@ -168,9 +223,11 @@ const SpaceSettingsModal = React.createClass({
             </div>
 
             <hr/>
+            {delete_space_field()}
             <button
               style={{width: '100%'}}
               className="Button Button--danger"
+              disabled={this.state.delete_button.disabled}
               onClick={this.deleteSpace}
             >
               Delete Space
