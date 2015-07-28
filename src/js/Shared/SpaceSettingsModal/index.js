@@ -83,6 +83,19 @@ const SpaceSettingsModal = React.createClass({
 
 
   render() {
+    const join_type_field = () => {
+      return this.props.serverConfig.public_spaces_enabled === 'yes' ? (
+        <fieldset>
+          <legend>Privacy Options</legend>
+
+          <SpaceJoinLevelField
+            checked={this.state.space.join_type}
+            valueLink={this.linkState('space.join_type')}
+          />
+        </fieldset>
+      ) : '';
+    };
+
     return (
       <Modal isOpen={this.props.modalIsOpen}
              onRequestClose={this.props.onRequestClose}
@@ -142,14 +155,7 @@ const SpaceSettingsModal = React.createClass({
                 />
               </fieldset>
 
-              <fieldset>
-                <legend>Privacy Options</legend>
-
-                <SpaceJoinLevelField
-                  checked={this.state.space.join_type}
-                  valueLink={this.linkState('space.join_type')}
-                />
-              </fieldset>
+              {join_type_field()}
 
             </div>
           </div>
