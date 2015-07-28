@@ -54,13 +54,21 @@ const SpaceSettingsModal = React.createClass({
     return false;
   },
 
-
   handleSubmit() {
     // do the validations and whatnot, and if everything is all good, pass it up the chain
     // ...validate...
     SpaceActions.updateSpace(this.state.space, () => {
       this.props.onRequestClose();
     });
+  },
+
+  deleteSpace() {
+    const del = window.confirm(`Are you sure you want to delete "${this.state.space.name}"?`);
+    if (del) {
+      SpaceActions.deleteSpace(this.state.space, () => {
+        console.log('done?');
+      });
+    }
   },
 
   validateSpaceName(space_name, cb) {
@@ -158,6 +166,16 @@ const SpaceSettingsModal = React.createClass({
               {join_type_field()}
 
             </div>
+
+            <hr/>
+            <button
+              style={{width: '100%'}}
+              className="Button Button--danger"
+              onClick={this.deleteSpace}
+            >
+              Delete Space
+            </button>
+
           </div>
 
           <div className="ReactModal__InnerSection ReactModal__Footer">

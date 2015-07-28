@@ -22,6 +22,7 @@ class SpaceStore {
     this.bindListeners({
       handleUpdateSpaces: SpaceActions.UPDATE_SPACES,
       handleUpdateSpace: SpaceActions.UPDATE_SPACE,
+      handleDeleteSpace: SpaceActions.DELETE_SPACE,
       handleFetchSpaces: SpaceActions.FETCH_SPACES,
       handleSpacesFailed: SpaceActions.SPACES_FAILED
     });
@@ -49,6 +50,13 @@ class SpaceStore {
 
   handleFetchSpaces() {
     this.loading = true;
+  }
+
+  handleDeleteSpace(id) {
+    // find the space in this.spaces and nuke it from orbit
+    // it's the only way to be sure
+    const index = this.spaces.findIndex(function(e) { return e.id === id; });
+    this.spaces.splice(index, 1);
   }
 
   handleSpacesFailed(error) {

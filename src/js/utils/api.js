@@ -79,6 +79,16 @@ const api = {
       });
   },
 
+  delete_space(data, cb, headers = default_headers()) {
+    request
+      .del(`${urlbase}/groups/${data.id}`)
+      .set(headers)
+      .send(data)
+      .end((err, response) => {
+        // do something
+      });
+  },
+  
   get_spaces_for_user(user_id, cb, per_page = 10, headers = default_headers()) {
     request
       .get(`${urlbase}/users/self/groups`)

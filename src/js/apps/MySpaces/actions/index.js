@@ -37,6 +37,20 @@ class SpaceActions {
     });
   }
 
+  deleteSpace(space, cb) {
+    api.delete_space(space, (err, response) => {
+      if (err) {
+        this.actions.spacesFailed(err);
+      } else {
+        this.dispatch(space.id);
+        console.log(response);
+      }
+      if (cb) {
+        cb();
+      }
+    });
+  }
+
   spacesFailed(error) {
     this.dispatch(error);
   }
