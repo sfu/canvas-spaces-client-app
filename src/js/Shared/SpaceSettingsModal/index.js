@@ -16,7 +16,7 @@ const initialErrorState = {
   description: '',
   join_type: '',
   members: '',
-  maillists: '',
+  maillist: '',
   leader_id: ''
 };
 const {PropTypes} = React;
