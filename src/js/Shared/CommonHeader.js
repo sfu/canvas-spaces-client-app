@@ -17,8 +17,7 @@ const CommonHeader = React.createClass({
             greater communication and collaboration to your group.
           </p>
           <p>
-            Canvas Spaces are currently restricted to uses with an @sfu.ca email address. For more information on Canvas Spaces,
-            please consult the <a href="#">documentation</a>.
+            Canvas Spaces are currently restricted to users with an @sfu.ca email address.
           </p>
         </div>
         <div className="span4 align-right">
