@@ -86,7 +86,7 @@ const CreateSpace = React.createClass({
   validateMaillist(maillist, cb) {
     api.validate_field('maillist', maillist, (result) => {
       if (!result.valid_maillist) {
-        cb(`${maillist} is not a valid SFU Maillist`);
+        cb(result.reason);
       }
     });
   },
