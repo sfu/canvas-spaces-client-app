@@ -85,9 +85,7 @@ const SpaceSettingsModal = React.createClass({
     }
 
     if (this.state.delete_button.deletable) {
-        SpaceActions.deleteSpace(this.state.space, () => {
-          console.log('done?');
-        });
+        SpaceActions.deleteSpace(this.state.space, () => {});
     }
   },
 
