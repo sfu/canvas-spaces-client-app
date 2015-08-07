@@ -34,7 +34,7 @@ const SpaceNameField = React.createClass({
       valueLink: null,
       errorLink: null,
       validate: () => {},
-      autoFocus: "true"
+      autoFocus: 'true'
     };
   },
 
