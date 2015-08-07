@@ -35,6 +35,7 @@ const SpaceSettingsModal = React.createClass({
 
   getInitialState() {
     return {
+      maillistFieldDirty: false,
       space: Object.assign({}, this.props.space),
       errors: Object.assign({}, initialErrorState),
       delete_button: {
@@ -58,9 +59,9 @@ const SpaceSettingsModal = React.createClass({
   },
 
   disableSubmit() {
-    if (this.state.space.name === '' || this.state.space.description === '') { return true; }
-    if (JSON.stringify(initialErrorState) !== JSON.stringify(this.state.errors)) { return true; }
-    return false;
+    const emptyFields = this.state.space.name === '' || this.state.space.description === '';
+    const hasErrors = JSON.stringify(initialErrorState) !== JSON.stringify(this.state.errors);
+    return emptyFields || hasErrors || this.state.maillistFieldDirty;
   },
 
   handleSubmit() {
@@ -99,9 +100,12 @@ const SpaceSettingsModal = React.createClass({
   },
 
   validateMaillist(maillist, cb) {
+    this.setState({ maillistFieldDirty: true });
     api.validate_field('maillist', maillist, (result) => {
       if (!result.valid_maillist) {
         cb(result.reason);
+      } else {
+        this.setState({ maillistFieldDirty: false });
       }
     });
   },
@@ -199,6 +203,7 @@ const SpaceSettingsModal = React.createClass({
                 <SpaceMaillistField
                   valueLink={this.linkState('space.maillist')}
                   errorLink={this.linkState('errors.maillist')}
+                  dirtyLink={this.linkState('maillistFieldDirty')}
                   validate={this.validateMaillist}
                 />
               </fieldset>

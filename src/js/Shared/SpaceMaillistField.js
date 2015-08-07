@@ -26,6 +26,13 @@ const SpaceMaillistField = React.createClass({
     }).isRequired
   },
 
+  getDirtyLink(props) {
+    return props.dirtyLink || {
+      value: props.value,
+      requestChange: props.onChange
+    };
+  },
+
   getDefaultProps() {
     return {
       value: '',
@@ -38,9 +45,10 @@ const SpaceMaillistField = React.createClass({
   },
 
   handleChange(event) {
-    const space_name = event.target.value;
+    const maillist = event.target.value;
     this.clearError();
-    this.getValueLink(this.props).requestChange(space_name);
+    this.getDirtyLink(this.props).requestChange(maillist === '' ? false : true);
+    this.getValueLink(this.props).requestChange(maillist);
   },
 
   validate(event) {

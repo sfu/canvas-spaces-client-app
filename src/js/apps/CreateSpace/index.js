@@ -23,6 +23,7 @@ const CreateSpace = React.createClass({
 
   getInitialState() {
     return {
+      maillistFieldDirty: false,
       space: {
         name: '',
         description: '',
@@ -34,9 +35,9 @@ const CreateSpace = React.createClass({
   },
 
   disableSubmit() {
-    if (this.state.space.name === '' || this.state.space.description === '') { return true; }
-    if (JSON.stringify(initialErrorState) !== JSON.stringify(this.state.errors)) { return true; }
-    return false;
+    const emptyFields = this.state.space.name === '' || this.state.space.description === '';
+    const hasErrors = JSON.stringify(initialErrorState) !== JSON.stringify(this.state.errors);
+    return emptyFields || hasErrors || this.state.maillistFieldDirty;
   },
 
   flashError(error_message) {
@@ -84,9 +85,12 @@ const CreateSpace = React.createClass({
   },
 
   validateMaillist(maillist, cb) {
+    this.setState({ maillistFieldDirty: true });
     api.validate_field('maillist', maillist, (result) => {
       if (!result.valid_maillist) {
         cb(result.reason);
+      } else {
+        this.setState({ maillistFieldDirty: false });
       }
     });
   },
@@ -160,6 +164,7 @@ const CreateSpace = React.createClass({
             <SpaceMaillistField
               valueLink={this.linkState('space.maillist')}
               errorLink={this.linkState('errors.maillist')}
+              dirtyLink={this.linkState('maillistFieldDirty')}
               validate={this.validateMaillist}
             />
             {maillist_help_text()}
