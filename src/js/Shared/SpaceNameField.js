@@ -33,7 +33,8 @@ const SpaceNameField = React.createClass({
       onChange: () => {},
       valueLink: null,
       errorLink: null,
-      validate: () => {}
+      validate: () => {},
+      autoFocus: "true"
     };
   },
 
@@ -66,7 +67,7 @@ const SpaceNameField = React.createClass({
         name="space_name"
         label="Space Name"
         placeholder="A short, descriptive name for your group (e.g. Basket Weaving Club)"
-        autoFocus="true"
+        autoFocus={this.props.autoFocus}
         onChange={this.handleChange}
         value={this.getValueLink(this.props).value}
         error={this.getErrorLink(this.props).value}
