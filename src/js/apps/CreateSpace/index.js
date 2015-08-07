@@ -23,6 +23,7 @@ const CreateSpace = React.createClass({
 
   getInitialState() {
     return {
+      submitButtonState: 'submit',
       maillistFieldDirty: false,
       space: {
         name: '',
@@ -37,7 +38,7 @@ const CreateSpace = React.createClass({
   disableSubmit() {
     const emptyFields = this.state.space.name === '' || this.state.space.description === '';
     const hasErrors = JSON.stringify(initialErrorState) !== JSON.stringify(this.state.errors);
-    return emptyFields || hasErrors || this.state.maillistFieldDirty;
+    return emptyFields || hasErrors || this.state.maillistFieldDirty || this.state.submitButtonState === 'saving';
   },
 
   flashError(error_message) {
@@ -55,7 +56,10 @@ const CreateSpace = React.createClass({
       return;
     }
 
+    this.setState({ submitButtonState: 'saving' });
+
     api.create_space(this.state.space, (response) => {
+      this.setState({ submitButtonState: 'saving' });
       if (response.status !== 200) {
 
         if (response.body.hasOwnProperty('field')) {
@@ -131,6 +135,17 @@ const CreateSpace = React.createClass({
         ) : '';
     };
 
+    const submitButtonContent = this.state.submitButtonState === 'submit' ? 'Create Space' : (
+      <div>
+        <div style={{display: 'inline'}} className="LoadMoreDingus--LoadingIndicator">
+          <div className="LoadMoreDingus--LoadingIndicator-bounce"></div>
+          <div className="LoadMoreDingus--LoadingIndicator-bounce"></div>
+          <div className="LoadMoreDingus--LoadingIndicator-bounce"></div>
+        </div>
+        <span style={{marginLeft: '1em'}}>Creating Space</span>
+      </div>
+    );
+
     return (
       <div>
         <h2>Create New Space</h2>
@@ -177,7 +192,7 @@ const CreateSpace = React.createClass({
               type="submit"
               onClick={this.handleSubmit}
           >
-            Create Space
+            {submitButtonContent}
           </button>
           </div>
 

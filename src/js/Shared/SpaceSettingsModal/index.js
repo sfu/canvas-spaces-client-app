@@ -35,7 +35,9 @@ const SpaceSettingsModal = React.createClass({
 
   getInitialState() {
     return {
+      submitButtonState: 'submit',
       maillistFieldDirty: false,
+      showSpinner: false,
       space: Object.assign({}, this.props.space),
       errors: Object.assign({}, initialErrorState),
       delete_button: {
@@ -61,13 +63,19 @@ const SpaceSettingsModal = React.createClass({
   disableSubmit() {
     const emptyFields = this.state.space.name === '' || this.state.space.description === '';
     const hasErrors = JSON.stringify(initialErrorState) !== JSON.stringify(this.state.errors);
-    return emptyFields || hasErrors || this.state.maillistFieldDirty;
+    return emptyFields || hasErrors || this.state.maillistFieldDirty || this.state.submitButtonState === 'saving';
   },
 
   handleSubmit() {
+    this.setState({
+      submitButtonState: 'saving'
+    });
     // do the validations and whatnot, and if everything is all good, pass it up the chain
     // ...validate...
     SpaceActions.updateSpace(this.state.space, () => {
+      this.setState({
+        submitButtonState: 'submit'
+      });
       this.props.onRequestClose();
     });
   },
@@ -159,6 +167,17 @@ const SpaceSettingsModal = React.createClass({
         </div>
       ) : '';
     };
+
+    const submitButtonContent = this.state.submitButtonState === 'submit' ? 'Save Changes' : (
+      <div>
+        <div style={{display: 'inline'}} className="LoadMoreDingus--LoadingIndicator">
+          <div className="LoadMoreDingus--LoadingIndicator-bounce"></div>
+          <div className="LoadMoreDingus--LoadingIndicator-bounce"></div>
+          <div className="LoadMoreDingus--LoadingIndicator-bounce"></div>
+        </div>
+        <span style={{marginLeft: '1em'}}>Saving Changes</span>
+      </div>
+    );
 
     return (
       <Modal isOpen={this.props.modalIsOpen}
@@ -253,7 +272,7 @@ const SpaceSettingsModal = React.createClass({
                 onClick={this.handleSubmit}
                 disabled={this.disableSubmit()}
                 >
-                Submit
+                {submitButtonContent}
               </button>
             </div>
           </div>
