@@ -213,6 +213,7 @@ const SpaceSettingsModal = React.createClass({
                   errorLink={this.linkState('errors.leader_id')}
                   current={this.state.space.leader_id}
                   users={this.state.space.users}
+                  autoFocus="false"
                 />
               </fieldset>
 
