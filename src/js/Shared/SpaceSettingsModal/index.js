@@ -36,7 +36,6 @@ const SpaceSettingsModal = React.createClass({
   getInitialState() {
     return {
       space: Object.assign({}, this.props.space),
-      original_space: Object.assign({}, this.props.space),
       errors: Object.assign({}, initialErrorState),
       delete_button: {
         show_field: false,
@@ -91,7 +90,7 @@ const SpaceSettingsModal = React.createClass({
 
   validateSpaceName(space_name, cb) {
     // // validate name against api
-    if (this.state.original_space.name.toLowerCase() === space_name.toLowerCase()) { return; }
+    if (this.state.space.name.toLowerCase() === space_name.toLowerCase()) { return; }
     api.validate_field('name', space_name, (result) => {
       if (!result.valid_group_name) {
         cb(result.message);
