@@ -20,18 +20,19 @@
   h1, h2 {
     margin: 0;
     line-height: 1.4em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   h1 {
     font-size: 2em;
     font-weight: normal;
     margin-bottom: .3em;
+    max-width: 13em;
   }
   h2 {
     font-size: .9em;
-    white-space: nowrap;
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    max-width: 25em;
   }
 }
 

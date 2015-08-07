@@ -40,7 +40,7 @@ const SpaceTile_Information = React.createClass({
 
     return (
       <div className="SpaceTile--SpaceInformation">
-        <a style={{color: '#000'}} href={this.props.space_url}><h1>{this.props.name}</h1></a>
+        <a style={{color: '#000'}} href={this.props.space_url}><h1 title={this.props.name}>{this.props.name}</h1></a>
         <h2 title={this.props.description}>{this.props.description}</h2>
         {edit_button}
         {leader_text}
