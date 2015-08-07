@@ -91,7 +91,7 @@ const SpaceSettingsModal = React.createClass({
 
   validateSpaceName(space_name, cb) {
     // // validate name against api
-    if (this.state.original_space.name === space_name) { return; }
+    if (this.state.original_space.name.toLowerCase() === space_name.toLowerCase()) { return; }
     api.validate_field('name', space_name, (result) => {
       if (!result.valid_group_name) {
         cb(result.message);
