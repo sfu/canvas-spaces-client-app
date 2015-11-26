@@ -8,7 +8,9 @@ const SpaceTile_Information = React.createClass({
   propTypes: {
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    is_leader: PropTypes.bool.isRequired
+    is_leader: PropTypes.bool.isRequired,
+    space_url: PropTypes.string.isRequired,
+    editButtonHandler: PropTypes.func.isRequired
   },
 
   render() {
