@@ -13,11 +13,6 @@ const SpaceTile_Information = React.createClass({
 
   render() {
 
-    function truncate_description(str) {
-      if (str.length < 140) { return str; }
-      return `${str.substr(0, 100).trim()}…`;
-    }
-
     const button = (icon, title, handler) => {
       return (
         <button
