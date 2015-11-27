@@ -6,6 +6,9 @@
     "es6": true,
     "jquery": true
   },
+  "ecmaFeatures": {
+   "jsx": true
+  },
   "plugins": [ "react" ],
   "globals": {
     "__DEV__": true,
@@ -19,6 +22,7 @@
     "camelcase": [0],
     "no-unused-vars": [1],
     "handle-callback-err": [0],
-    "jsx-quotes": [2, "prefer-double"]
+    "jsx-quotes": [2, "prefer-double"],
+    "react/jsx-uses-react": 1
   }
 }

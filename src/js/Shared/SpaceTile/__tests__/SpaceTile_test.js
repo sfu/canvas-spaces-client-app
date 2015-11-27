@@ -1,5 +1,3 @@
-
-/* eslint-env mocha eslint-unused */
 'use strict';
 
 import expect from 'expect';
@@ -12,7 +10,6 @@ describe('<SpaceTile>', () => {
   let TestUtils;
   let renderer;
 
-  React; //bypass ESLint no-unused-var error
 
   beforeEach(() => {
     TestUtils = require('react-addons-test-utils');

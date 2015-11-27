@@ -1,4 +1,3 @@
-/* eslint-env mocha eslint-unused */
 'use strict';
 
 import React from 'react';
@@ -8,11 +7,6 @@ import expectJsx from 'expect-jsx';
 expect.extend(expectJsx);
 
 import SpaceTile_Avatar from '../SpaceTile_Avatar';
-
-before((done) => {
-  React; //bypass ESLint no-unused-var error
-  done();
-});
 
 describe('<SpaceTile_Avatar />', () => {
 
