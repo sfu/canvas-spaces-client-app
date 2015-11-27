@@ -21,7 +21,7 @@ const initialErrorState = {
 };
 const {PropTypes} = React;
 
-Modal.setAppElement(document.getElementById('CanvasSpacesApp'));
+Modal.setAppElement('#CanvasSpacesApp');
 
 const SpaceSettingsModal = React.createClass({
   mixins: [DeepLinkedStateMixin],
