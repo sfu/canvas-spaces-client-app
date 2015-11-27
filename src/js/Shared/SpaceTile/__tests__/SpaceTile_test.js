@@ -9,7 +9,7 @@ expect.extend(expectJsx);
 const SpaceTile = require('../index');
 const SpaceTile_Information = require('../SpaceTile_Information');
 const SpaceTile_Avatar = require('../SpaceTile_Avatar');
-const SpaceSettingsModal = require('shared/SpaceSettingsModal');
+const SpaceSettingsModal = require('Shared/SpaceSettingsModal');
 
 let renderer;
 
