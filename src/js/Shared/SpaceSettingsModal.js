@@ -9,7 +9,7 @@ import SpaceDescriptionField from 'Shared/SpaceDescriptionField';
 import SpaceJoinLevelField from 'Shared/SpaceJoinLevelField';
 import SpaceMaillistField from 'Shared/SpaceMaillistField';
 import SpaceLeaderField from 'Shared/SpaceLeaderField';
-import SpaceActions from '../../apps/MySpaces/actions';
+import SpaceActions from '../apps/MySpaces/actions';
 
 const initialErrorState = {
   name: '',
