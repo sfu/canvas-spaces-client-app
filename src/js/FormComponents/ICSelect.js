@@ -10,19 +10,27 @@ const inputClass = 'ic-Input';
 const ICSelect = React.createClass({
 
   propTypes: {
-    name: PropTypes.string.isRequired,
-    options: PropTypes.array.isRequired,
-    label: PropTypes.string.isRequired,
-    value: PropTypes.number,
-    placeholder: PropTypes.string,
-    labelClasses: PropTypes.string,
+    autoFocus: PropTypes.bool.isRequired,
+    defaultValue: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.number,
+    ]),
+    error: PropTypes.string,
     inputClasses: PropTypes.string,
-    error: PropTypes.string
+    label: PropTypes.string.isRequired,
+    labelClasses: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    onBlur: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
+    options: PropTypes.array.isRequired,
+    placeholder: PropTypes.string,
+    value: PropTypes.number
   },
 
   getDefaultProps() {
     return {
       onBlur: () => {},
+      onChange: () => {},
       autoFocus: false,
       options: []
     };

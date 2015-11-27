@@ -2,6 +2,8 @@
 'use strict';
 
 import React from 'react';
+const {PropTypes} = React;
+
 import DeepLinkedStateMixin from 'mixins/DeepLinkedStateMixin';
 
 import api from 'utils/api';
@@ -19,6 +21,10 @@ const initialErrorState = {
 
 
 const CreateSpace = React.createClass({
+  propTypes: {
+    serverConfig: PropTypes.object.isRequired
+  },
+
   mixins: [DeepLinkedStateMixin],
 
   getInitialState() {

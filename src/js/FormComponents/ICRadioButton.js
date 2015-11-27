@@ -3,14 +3,14 @@
 import React from 'react';
 const {PropTypes} = React;
 
-const labelClass = 'ic-Label';
-const inputClass = 'ic-Input';
-
 const ICRadioButton = React.createClass({
 
   propTypes: {
+    checked: PropTypes.bool,
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequied,
+    onChange: PropTypes.func.isRequired,
     value: PropTypes.string.isRequired
   },
 

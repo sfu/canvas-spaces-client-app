@@ -1,7 +1,11 @@
 'use strict';
 import React from 'react';
+const {PropTypes} = React;
 
 const ErrorBox = React.createClass({
+  propTypes: {
+    error: PropTypes.string,
+  },
 
   render() {
     if (!this.props.error) { return <div />; }

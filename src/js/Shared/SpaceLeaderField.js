@@ -14,16 +14,16 @@ const SpaceLeaderField = React.createClass({
   ],
 
   propTypes: {
+    errorLink: PropTypes.shape({
+      value: PropTypes.string,
+      requestChange: PropTypes.func.isRequired
+    }).isRequired,
     onChange: PropTypes.func,
     users: PropTypes.array.isRequired,
     valueLink: PropTypes.shape({
       value: PropTypes.number,
       requestChange: PropTypes.func.isRequired
     }).isRequired,
-    errorLink: PropTypes.shape({
-      value: PropTypes.string,
-      requestChange: PropTypes.func.isRequired
-    }).isRequired
   },
 
   getDefaultProps() {

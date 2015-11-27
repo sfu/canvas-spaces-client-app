@@ -15,15 +15,17 @@
     "__CANVAS_API_TOKEN__": true,
   },
   "rules": {
-    "quotes": [2, "single"],
-    "eol-last": [1],
-    "no-mixed-requires": [0],
-    "no-underscore-dangle": [0],
     "camelcase": [0],
-    "no-unused-vars": [1],
+    "eol-last": [1],
     "handle-callback-err": [0],
     "jsx-quotes": [2, "prefer-double"],
+    "no-mixed-requires": [0],
+    "no-undefined": [2],
+    "no-underscore-dangle": [0],
+    "no-unused-vars": [1],
+    "quotes": [2, "single"],
     "react/jsx-uses-react": 1,
-    "react/prop-types": 1
+    "react/prop-types": 1,
+    "react/jsx-sort-prop-types": 1
   }
 }

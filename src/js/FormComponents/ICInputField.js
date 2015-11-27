@@ -10,13 +10,16 @@ const inputClass = 'ic-Input';
 const ICInputField = React.createClass({
 
   propTypes: {
-    name: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    value: PropTypes.string,
-    placeholder: PropTypes.string,
-    labelClasses: PropTypes.string,
+    autoFocus: PropTypes.bool,
+    error: PropTypes.string,
     inputClasses: PropTypes.string,
-    error: PropTypes.string
+    label: PropTypes.string.isRequired,
+    labelClasses: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func,
+    placeholder: PropTypes.string,
+    value: PropTypes.string
   },
 
   getDefaultProps() {

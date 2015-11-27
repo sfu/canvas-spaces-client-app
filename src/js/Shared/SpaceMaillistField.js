@@ -14,16 +14,16 @@ const SpaceMaillistField = React.createClass({
   ],
 
   propTypes: {
+    errorLink: PropTypes.shape({
+      value: PropTypes.string,
+      requestChange: PropTypes.func.isRequired
+    }).isRequired,
     onChange: PropTypes.func,
     validate: PropTypes.func,
     valueLink: PropTypes.shape({
       value: PropTypes.string,
       requestChange: PropTypes.func.isRequired
     }).isRequired,
-    errorLink: PropTypes.shape({
-      value: PropTypes.string,
-      requestChange: PropTypes.func.isRequired
-    }).isRequired
   },
 
   getDirtyLink(props) {

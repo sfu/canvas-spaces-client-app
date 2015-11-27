@@ -14,13 +14,13 @@ const SpaceDescriptionField = React.createClass({
   ],
 
   propTypes: {
-    value: PropTypes.string,
-    onChange: PropTypes.func,
-    valueLink: PropTypes.shape({
+    errorLink: PropTypes.shape({
       value: PropTypes.string.isRequired,
       requestChange: PropTypes.func.isRequired
     }).isRequired,
-    errorLink: PropTypes.shape({
+    onChange: PropTypes.func,
+    value: PropTypes.string,
+    valueLink: PropTypes.shape({
       value: PropTypes.string.isRequired,
       requestChange: PropTypes.func.isRequired
     }).isRequired

@@ -8,10 +8,13 @@ import SpaceActions from './actions';
 import SpaceTile from 'Shared/SpaceTile';
 import LoadMoreDingus from 'Shared/LoadMoreDingus';
 import ErrorBox from 'Shared/ErrorBox';
-
+const {PropTypes} = React;
 const {Link} = Router;
 
 const MySpaces = React.createClass({
+  propTypes: {
+    serverConfig: PropTypes.object.isRequired
+  },
 
   getInitialState() {
     return SpaceStore.getState();

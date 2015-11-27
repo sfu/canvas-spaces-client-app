@@ -18,8 +18,9 @@ const radioButtons = [
 const SpaceJoinLevelField = React.createClass({
 
   propTypes: {
-    value: PropTypes.string,
+    checked: PropTypes.bool,
     onChange: PropTypes.func,
+    value: PropTypes.string,
     valueLink: PropTypes.shape({
       value: PropTypes.string.isRequired,
       requestChange: PropTypes.func.isRequired

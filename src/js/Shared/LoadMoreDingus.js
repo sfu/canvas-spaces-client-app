@@ -6,9 +6,10 @@ const {PropTypes} = React;
 const LoadMoreDingus = React.createClass({
 
   propTypes: {
-    title: PropTypes.string.isRequired,
+    disabled: PropTypes.bool.isRequired,
+    loading: PropTypes.bool.isRequired,
     onClick: PropTypes.func.isRequired,
-    loading: PropTypes.bool.isRequired
+    title: PropTypes.string.isRequired
   },
 
   getDefaultProps() {

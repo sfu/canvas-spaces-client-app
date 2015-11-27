@@ -8,13 +8,15 @@ import ICRadioButton from 'FormComponents/ICRadioButton';
 const ICRadioButtonGroup = React.createClass({
 
   propTypes: {
-    name: PropTypes.string.isRequired,
-    buttonItems: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+    buttonItems: PropTypes.arrayOf(React.PropTypes.object).isRequired,
+    checked: PropTypes.bool,
     checkedAndDefaultChecked: (props, propName, componentName) => {
       if (props.checked && props.defaultChecked) {
         return new Error(`both 'checked' and 'defaultChecked' are present on ${componentName}.`);
       }
-    }
+    },
+    name: PropTypes.string.isRequired,
+    onChange: PropTypes.func
   },
 
   getRadioButtons() {

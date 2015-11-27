@@ -27,10 +27,12 @@ const SpaceSettingsModal = React.createClass({
   mixins: [DeepLinkedStateMixin],
 
   propTypes: {
+    className: PropTypes.string,
     modalIsOpen: PropTypes.bool.isRequired,
     onRequestClose: PropTypes.func.isRequired,
-    className: PropTypes.string,
-    overlayClassName: PropTypes.string
+    overlayClassName: PropTypes.string,
+    serverConfig: PropTypes.object.isRequired,
+    space: PropTypes.object.isRequired
   },
 
   getInitialState() {

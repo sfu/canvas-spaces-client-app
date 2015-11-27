@@ -10,9 +10,10 @@ import SpaceSettingsModal from 'Shared/SpaceSettingsModal';
 const SpaceTile = React.createClass({
 
   propTypes: {
-    space: PropTypes.object.isRequired,
     avatar: PropTypes.string,
-    context: PropTypes.string.isRequired
+    context: PropTypes.string.isRequired,
+    serverConfig: PropTypes.object.isRequired,
+    space: PropTypes.object.isRequired
   },
 
   getInitialState() {

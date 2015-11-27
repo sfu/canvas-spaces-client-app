@@ -14,16 +14,17 @@ const SpaceNameField = React.createClass({
   ],
 
   propTypes: {
+    autoFocus: PropTypes.bool,
+    errorLink: PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      requestChange: PropTypes.func.isRequired
+    }).isRequired,
     onChange: PropTypes.func,
     validate: PropTypes.func,
     valueLink: PropTypes.shape({
       value: PropTypes.string.isRequired,
       requestChange: PropTypes.func.isRequired
     }).isRequired,
-    errorLink: PropTypes.shape({
-      value: PropTypes.string.isRequired,
-      requestChange: PropTypes.func.isRequired
-    }).isRequired
   },
 
   getDefaultProps() {
