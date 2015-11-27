@@ -1,26 +1,24 @@
 'use strict';
 
+import React from 'react';
+import {createRenderer} from 'react-addons-test-utils';
 import expect from 'expect';
 import expectJsx from 'expect-jsx';
 expect.extend(expectJsx);
 
+const SpaceTile = require('../index');
+const SpaceTile_Information = require('../SpaceTile_Information');
+const SpaceTile_Avatar = require('../SpaceTile_Avatar');
+const SpaceSettingsModal = require('shared/SpaceSettingsModal');
+
+let renderer;
+
 describe('<SpaceTile>', () => {
-
-  let React = require('react');;
-  let TestUtils;
-  let renderer;
-
-
   beforeEach(() => {
-    TestUtils = require('react-addons-test-utils');
-    renderer = TestUtils.createRenderer();
+    renderer = createRenderer();
   });
 
   it('works?', () => {
-    const SpaceTile = require('../index');
-    const SpaceTile_Information = require('../SpaceTile_Information');
-    const SpaceTile_Avatar = require('../SpaceTile_Avatar');
-    const SpaceSettingsModal = require('shared/SpaceSettingsModal');
     const space = {
       id: 1,
       name: 'Test',
@@ -31,7 +29,6 @@ describe('<SpaceTile>', () => {
       users: [],
       avatar_url: 'avatar.png'
     };
-    const space_url = '/test';
     const serverConfig = { public_spaces_enabled: false };
     renderer.render((
       <SpaceTile
