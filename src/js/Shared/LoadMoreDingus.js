@@ -51,4 +51,3 @@ const LoadMoreDingus = React.createClass({
 
 
 export default LoadMoreDingus;
-
