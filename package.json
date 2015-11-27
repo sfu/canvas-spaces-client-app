@@ -8,7 +8,8 @@
     "start": "webpack-dev-server",
     "setup": "script/canvas_setup",
     "lint": "eslint src/js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "karma start",
+    "test:watch": "npm run test -- --single-run=false"
   },
   "keywords": [
     "canvas",
@@ -29,8 +30,13 @@
     "expect-jsx": "^2.1.2",
     "fs-extra": "^0.17.0",
     "glob": "^5.0.3",
-    "mocha": "^2.3.4",
-    "mowatch": "^0.1.0",
+    "karma": "^0.13.15",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-cli": "^0.1.1",
+    "karma-mocha": "^0.2.1",
+    "karma-mocha-reporter": "^1.1.2",
+    "karma-sourcemap-loader": "^0.3.6",
+    "karma-webpack": "^1.7.0",
     "react-addons-test-utils": "^0.14.2",
     "react-hot-loader": "^1.2.5",
     "sass-loader": "^1.0.0",
