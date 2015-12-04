@@ -11,8 +11,16 @@ import LoadMoreDingus from '../LoadMoreDingus';
 let renderer;
 
 describe('<LoadMoreDingus>', () => {
+
+  const oldError = console.error;
+
   beforeEach(() => {
     renderer = createRenderer();
+    console.error = (str) => {
+      throw new Error(str);
+    }
+  afterEach(() => {
+    console.error = oldError;
   });
 
   it('renders with a static icon when not loading', () => {
