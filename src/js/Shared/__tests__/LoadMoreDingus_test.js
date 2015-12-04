@@ -25,9 +25,21 @@ describe('<LoadMoreDingus>', () => {
 
   it('renders with a static icon when not loading', () => {
     renderer.render((
-      <LoadMoreDingus />
+      <LoadMoreDingus
+        {...testProps}
+      />
     ));
-    console.log(renderer.getRenderOutput());
+    const expected = (
+      <button
+        title="Load More"
+        onClick={() => {}}
+        className="Button Button--primary LoadMoreDingus"
+        disabled={false}
+      >
+        <i className="icon-more"></i>
+      </button>
+    )
+    expect(renderer.getRenderOutput()).toEqualJSX(expected);
   });
 
   it('renders an empty div when no error is passed', () => {
