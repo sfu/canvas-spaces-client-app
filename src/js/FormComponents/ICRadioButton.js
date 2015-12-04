@@ -9,7 +9,7 @@ const ICRadioButton = React.createClass({
     checked: PropTypes.bool,
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequied,
+    name: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     value: PropTypes.string.isRequired
   },
