@@ -14,11 +14,21 @@ const SpaceSettingsModal = require('Shared/SpaceSettingsModal');
 let renderer;
 
 describe('<SpaceTile>', () => {
+
+  const oldError = console.error;
+
   beforeEach(() => {
+    console.error = (str) => {
+      throw new Error(str);
+    }
     renderer = createRenderer();
   });
 
-  it('works?', () => {
+  afterEach(() => {
+    console.error = oldError;
+  });
+
+  it('renders a tile for a space', () => {
     const space = {
       id: 1,
       name: 'Test',
@@ -64,4 +74,13 @@ describe('<SpaceTile>', () => {
       </div>
     ));
   });
+
+  it('throws when missing a required prop', () => {
+    expect(() => {
+      renderer.render((
+        <SpaceTile />
+      ));
+    }).toThrow();
+  });
+
 });
