@@ -14,11 +14,23 @@ describe('<LoadMoreDingus>', () => {
 
   const oldError = console.error;
 
+  const defaultProps = {
+    disabled: false,
+    loading: false,
+    onClick: () => {},
+    title: "Load More"
+  }
+
+  let testProps;
+
   beforeEach(() => {
     renderer = createRenderer();
     console.error = (str) => {
       throw new Error(str);
     }
+    testProps = Object.assign({}, defaultProps);
+  });
+
   afterEach(() => {
     console.error = oldError;
   });
@@ -42,8 +54,34 @@ describe('<LoadMoreDingus>', () => {
     expect(renderer.getRenderOutput()).toEqualJSX(expected);
   });
 
-  it('renders an empty div when no error is passed', () => {
-    renderer.render(<ErrorBox />);
-    expect(renderer.getRenderOutput()).toEqualJSX(<div />)
+  it('renders with an animated icon when loading', () => {
+    testProps.loading = true;
+    renderer.render((
+      <LoadMoreDingus
+        {...testProps}
+      />
+    ));
+    const expected = (
+      <button
+        title="Load More"
+        onClick={() => {}}
+        className="Button Button--primary LoadMoreDingus"
+        disabled={false}
+      >
+      <div className="LoadMoreDingus--LoadingIndicator">
+        <div className="LoadMoreDingus--LoadingIndicator-bounce"></div>
+        <div className="LoadMoreDingus--LoadingIndicator-bounce"></div>
+        <div className="LoadMoreDingus--LoadingIndicator-bounce"></div>
+      </div>
+      </button>
+    )
+    expect(renderer.getRenderOutput()).toEqualJSX(expected);
   });
+
+  it('throws when missing a required prop', () => {
+    expect(() => {
+      renderer.render(<LoadMoreDingus />);
+    }).toThrow(/Failed propType/);
+  })
+
 });
