@@ -11,7 +11,7 @@ const ErrorBox = React.createClass({
     if (!this.props.error) { return <div />; }
     return (
       <div className="alert alert-error">
-        <strong>Error:</strong><span> {this.props.error}</span>
+        <strong>Error:</strong> <span>{this.props.error}</span>
       </div>
     );
   }
