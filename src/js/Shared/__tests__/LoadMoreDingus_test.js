@@ -1,14 +1,10 @@
 'use strict';
 
 import React from 'react';
-import {createRenderer} from 'react-addons-test-utils';
 import expect from 'expect';
-import expectJsx from 'expect-jsx';
-expect.extend(expectJsx);
+import {shallow} from 'enzyme';
 
 import LoadMoreDingus from '../LoadMoreDingus';
-
-let renderer;
 
 describe('<LoadMoreDingus>', () => {
 
@@ -24,7 +20,6 @@ describe('<LoadMoreDingus>', () => {
   let testProps;
 
   beforeEach(() => {
-    renderer = createRenderer();
     console.error = (str) => {
       throw new Error(str);
     }
@@ -36,52 +31,23 @@ describe('<LoadMoreDingus>', () => {
   });
 
   it('renders with a static icon when not loading', () => {
-    renderer.render((
-      <LoadMoreDingus
-        {...testProps}
-      />
-    ));
-    const expected = (
-      <button
-        title="Load More"
-        onClick={() => {}}
-        className="Button Button--primary LoadMoreDingus"
-        disabled={false}
-      >
-        <i className="icon-more"></i>
-      </button>
-    )
-    expect(renderer.getRenderOutput()).toEqualJSX(expected);
+    const wrapper = shallow(<LoadMoreDingus {...testProps} />);
+    const myComponents = wrapper.find('button');
+    expect(wrapper.find('button').length).toEqual(1);
   });
 
   it('renders with an animated icon when loading', () => {
     testProps.loading = true;
-    renderer.render((
-      <LoadMoreDingus
-        {...testProps}
-      />
-    ));
-    const expected = (
-      <button
-        title="Load More"
-        onClick={() => {}}
-        className="Button Button--primary LoadMoreDingus"
-        disabled={false}
-      >
-      <div className="LoadMoreDingus--LoadingIndicator">
-        <div className="LoadMoreDingus--LoadingIndicator-bounce"></div>
-        <div className="LoadMoreDingus--LoadingIndicator-bounce"></div>
-        <div className="LoadMoreDingus--LoadingIndicator-bounce"></div>
-      </div>
-      </button>
-    )
-    expect(renderer.getRenderOutput()).toEqualJSX(expected);
+    const wrapper = shallow(<LoadMoreDingus {...testProps} />);
+    const myComponents = wrapper.find('button');
+    expect(wrapper.find('button').length).toEqual(1);
+    expect(wrapper.find('.LoadMoreDingus--LoadingIndicator').length).toEqual(1);
   });
 
   it('throws when missing a required prop', () => {
     expect(() => {
-      renderer.render(<LoadMoreDingus />);
+      shallow(<LoadMoreDingus />);
     }).toThrow(/Failed propType/);
-  })
+  });
 
 });
