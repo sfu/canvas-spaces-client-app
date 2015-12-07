@@ -9,6 +9,7 @@ module.exports = function (config) {
     browsers: [ 'Chrome' ],
     singleRun: true,
     frameworks: [ 'mocha' ],
+    captureConsole: false,
     files: [
       'tests.webpack.js'
     ],
@@ -21,12 +22,23 @@ module.exports = function (config) {
       module: {
         loaders: [
           { test: /\.js$/, loader: 'babel-loader' }
+        ],
+        noParse: [
+           /node_modules\/sinon\//
         ]
       },
       plugins: [ pragmas ],
       resolve: {
         extensions: ['', '.js', '.jsx'],
-        root: path.join(__dirname, '/src/js')
+        root: path.join(__dirname, '/src/js'),
+        alias: {
+          'sinon': 'sinon/pkg/sinon'
+        }
+      },
+      externals: {
+        'jsdom': 'window',
+        'cheerio': 'window',
+        'react/lib/ExecutionEnvironment': true
       }
     },
     webpackServer: {
