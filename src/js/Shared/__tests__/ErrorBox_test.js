@@ -1,31 +1,22 @@
 'use strict';
 
 import React from 'react';
-import {createRenderer} from 'react-addons-test-utils';
+import {shallow} from 'enzyme';
 import expect from 'expect';
-import expectJsx from 'expect-jsx';
-expect.extend(expectJsx);
-
-let renderer;
 
 import ErrorBox from '../ErrorBox';
 
 describe('<ErrorBox>', () => {
-  beforeEach(() => {
-    renderer = createRenderer();
-  });
-
   it('renders the error when an error is passed', () => {
-    renderer.render(<ErrorBox error="Something is horribly wrong" />);
-    expect(renderer.getRenderOutput()).toEqualJSX((
-      <div className="alert alert-error">
-        <strong>Error:</strong> <span>Something is horribly wrong</span>
-      </div>
-    ));
+    const wrapper = shallow(<ErrorBox error="Something is horribly wrong" />);
+    expect(wrapper.find('.alert').length).toEqual(1);
+    expect(wrapper.text()).toEqual('Error: Something is horribly wrong');
   });
 
   it('renders an empty div when no error is passed', () => {
-    renderer.render(<ErrorBox />);
-    expect(renderer.getRenderOutput()).toEqualJSX(<div />)
+    const wrapper = shallow(<ErrorBox />);
+    expect(wrapper.find('div').length).toEqual(1);
+    expect(wrapper.find('.alert').length).toEqual(0);
+    expect(wrapper.text()).toEqual('');
   });
 });

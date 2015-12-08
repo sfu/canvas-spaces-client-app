@@ -1,17 +1,14 @@
 'use strict';
 
 import React from 'react';
-import {createRenderer} from 'react-addons-test-utils';
 import expect from 'expect';
-import expectJsx from 'expect-jsx';
-expect.extend(expectJsx);
+import {shallow} from 'enzyme';
 
 const SpaceTile = require('../index');
 const SpaceTile_Information = require('../SpaceTile_Information');
 const SpaceTile_Avatar = require('../SpaceTile_Avatar');
 const SpaceSettingsModal = require('Shared/SpaceSettingsModal');
 
-let renderer;
 
 describe('<SpaceTile>', () => {
 
@@ -21,7 +18,6 @@ describe('<SpaceTile>', () => {
     console.error = (str) => {
       throw new Error(str);
     }
-    renderer = createRenderer();
   });
 
   afterEach(() => {
@@ -40,7 +36,7 @@ describe('<SpaceTile>', () => {
       avatar_url: 'avatar.png'
     };
     const serverConfig = { public_spaces_enabled: false };
-    renderer.render((
+    const wrapper = shallow((
       <SpaceTile
         space={space}
         avatar={space.avatar_url}
@@ -49,35 +45,15 @@ describe('<SpaceTile>', () => {
       />
     ));
 
-    expect(renderer.getRenderOutput()).toEqualJSX((
-      <div>
-        <div className="SpaceTile">
-          <SpaceTile_Information
-            name="Test"
-            description="Test"
-            is_leader={false}
-            editButtonHandler={function noRefCheck() {}}
-            space_url="/groups/1"
-          />
-          <SpaceTile_Avatar
-            avatar="avatar.png"
-          />
-        </div>
-        <SpaceSettingsModal
-          space={space}
-          className="ReactModal__Content--canvas"
-          overlayClassName="ReactModal__Overlay--canvas"
-          modalIsOpen={false}
-          onRequestClose={function noRefCheck() {}}
-          serverConfig={serverConfig}
-        />
-      </div>
-    ));
+    expect(wrapper.find('.SpaceTile').length).toEqual(1);
+    expect(wrapper.find(SpaceTile_Information).length).toEqual(1);
+    expect(wrapper.find(SpaceTile_Avatar).length).toEqual(1);
+    expect(wrapper.find(SpaceSettingsModal).length).toEqual(1);
   });
 
   it('throws when missing a required prop', () => {
     expect(() => {
-      renderer.render((
+      shallow((
         <SpaceTile />
       ));
     }).toThrow();

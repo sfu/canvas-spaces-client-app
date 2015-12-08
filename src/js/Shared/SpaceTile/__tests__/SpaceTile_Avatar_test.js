@@ -1,10 +1,8 @@
 'use strict';
 
 import React from 'react';
-import {createRenderer} from 'react-addons-test-utils';
 import expect from 'expect';
-import expectJsx from 'expect-jsx';
-expect.extend(expectJsx);
+import {shallow} from 'enzyme';
 
 import SpaceTile_Avatar from '../SpaceTile_Avatar';
 
@@ -23,15 +21,14 @@ describe('<SpaceTile_Avatar />', () => {
   });
 
   it('renders the element', () => {
-    const renderer = createRenderer();
-    renderer.render(<SpaceTile_Avatar avatar="avatar.png" />);
-    expect(renderer.getRenderOutput()).toEqualJSX(<div className="SpaceTile--SpaceAvatar"><img src="avatar.png" /></div>);
+    const wrapper = shallow(<SpaceTile_Avatar avatar="avatar.png" />);
+    expect(wrapper.find('.SpaceTile--SpaceAvatar').length).toEqual(1);
+    expect(wrapper.find('img').length).toEqual(1);
   });
 
   it('throws when no avatar prop passed', () => {
-    const renderer = createRenderer();
     expect(() => {
-      renderer.render(<SpaceTile_Avatar />);
+      shallow(<SpaceTile_Avatar />);
     }).toThrow(/Failed propType/);
   });
 });
