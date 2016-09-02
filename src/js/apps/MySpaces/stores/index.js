@@ -64,7 +64,7 @@ class SpaceStore {
     this.error = errors.hasOwnProperty(errorKey) ? errors[errorKey] : errors.default;
     window.setTimeout(() => {
       this.setState({ error: null });
-    }.bind(this), 5000);
+    }, 5000);
   }
 }
 

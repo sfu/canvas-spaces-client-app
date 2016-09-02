@@ -15,7 +15,6 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://' + hostname + ':' + port,
     'webpack/hot/only-dev-server',
-    path.join(__dirname, '/node_modules/babel-core/browser-polyfill.js'),
     './src/js/index.js'
   ],
 

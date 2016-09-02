@@ -75,7 +75,7 @@ const CreateSpace = React.createClass({
         // TODO: show a modal with a choice: go to new space, or create a new one?
         window.location = space_url;
       }
-    }.bind(this));
+    });
 
   },
 

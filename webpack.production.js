@@ -8,7 +8,6 @@ var pragmas = new webpack.DefinePlugin({
 
 module.exports = {
   entry: [
-    path.join(__dirname, '/node_modules/babel-core/browser-polyfill.js'),
     './src/js/index.js'
   ],
 
