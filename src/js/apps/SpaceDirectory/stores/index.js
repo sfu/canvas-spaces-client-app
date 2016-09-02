@@ -1,7 +1,7 @@
 'use strict';
 
 import alt from '../alt';
-import makeHot from 'alt/utils/makeHot';
+import makeHot from 'alt-utils/lib/makeHot';
 import SpaceActions from '../actions';
 import DefaultAvatars from 'Shared/DefaultAvatars';
 
