@@ -5,11 +5,11 @@ import api from 'utils/api';
 
 class SpaceActions {
   updateSpaces(spaces, links) {
-    return {spaces, links};;
+    return {spaces, links};
   }
 
   fetchSpaces(next_link) {
-    return function(dispatch) {
+    return (dispatch) => {
       dispatch();
 
       if (!next_link) {
@@ -27,7 +27,7 @@ class SpaceActions {
   }
 
   updateSpace(space, cb) {
-    return function(dispatch) {
+    return (dispatch) => {
       api.update_space(space, (err, newspace) => {
         if (err) {
           this.spacesFailed(err);
@@ -42,7 +42,7 @@ class SpaceActions {
   }
 
   spacesFailed(error) {
-    return error;;
+    return error;
   }
 }
 
